@@ -1,0 +1,11 @@
+.back-ground-home{
+    background-color: #d4dad6;
+   width: 100%;
+   height: 100vh;
+}
+.sidebarHome{
+    position: absolute;
+}
+.menu-home{
+    position: relative;
+}
