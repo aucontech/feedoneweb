@@ -9,3 +9,30 @@
 .menu-home{
     position: relative;
 }
+.ant-menu {
+    background-color: #001529; /* Set background color */
+    border: none; /* Remove border */
+    font-size: 16px; /* Set font size */
+  }
+  
+  .ant-menu-item,
+  .ant-menu-submenu-title {
+    color: #fff; /* Set font color */
+    padding: 0 20px; /* Add padding */
+  }
+  
+  .ant-menu-item:hover,
+  .ant-menu-submenu-title:hover {
+    color: #1890ff; /* Change font color on hover */
+    background-color: transparent; /* Remove background color on hover */
+  }
+  
+  .ant-menu-submenu-popup {
+    background-color: #001529; /* Set background color for submenus */
+  }
+  
+  .ant-menu-submenu-popup .ant-menu-item,
+  .ant-menu-submenu-popup .ant-menu-submenu-title {
+    color: #fff; /* Set font color for submenus */
+  }
+  

@@ -1,9 +1,12 @@
 
 .bar-side{
-    font-size: 30px;
+    font-size: 20px;
+    align-items: center;
 }
 .button-side-bar{
-    margin-right: 200px;
+    margin-right: 100px;
     
-    border: 1px solid rgb(202, 192, 192);
+}
+.Menu{
+    position: fixed;
 }

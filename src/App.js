@@ -3,7 +3,7 @@ import './App.css';
 import Layout from './HOC/Layout';
 import HomePage from './Page/HomePage/HomePage';
 import LoginPage from './Page/LoginPage/LoginPage';
-import TestProject from './VungNuoi/Test-project';
+import Testproject from './VungNuoi/Testproject';
 
 function App() {
   return (
@@ -15,7 +15,7 @@ function App() {
           <Route path='/HomePage' element={<Layout Component={HomePage} />} />
 
           <Route path='/' element={<LoginPage />} />
-          <Route path='/test' element={<TestProject />} />
+          <Route path='/test' element={<Testproject />} />
         </Routes>
 
       </BrowserRouter>

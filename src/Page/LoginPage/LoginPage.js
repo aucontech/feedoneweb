@@ -37,17 +37,17 @@ const LoginPage = () => {
 
     return (
         <div className="login-container">
-            <div className="fish-sh">
-                <img className="" src={fishSh} alt="" />
+            <div className="">
+                <img className="fish-sh" src={fishSh} alt="" />
             </div>
 
             <div className="login-form-container">
                 <div className="login-form-logo-container">
-                    <img className="logoFish" src={logoFish} alt="" />
+                    <img className="fishsh" src={logoFish} alt="" />
                 </div>
                 <div className="login-form">
                     <p className="text-hethong">Hệ Thống Quản Lý Ao</p>
-                    <p className="login-form-subtitle">Đăng nhập để tiếp tục</p>
+                    <p className="login-form-subtitle py-10">Đăng nhập để tiếp tục</p>
                     <Form name="normal_login" className="login-form" onFinish={onFinish}>
                         <Form.Item
                             name="username"
@@ -55,7 +55,7 @@ const LoginPage = () => {
                         >
                             <Input
                                 style={{ width: 400, height: 50 }}
-                                prefix={<UserOutlined className="site-form-item-icon" />}
+                                prefix={<UserOutlined className="site-form-item-icon text-xl" />}
                                 placeholder="Tên đăng nhập"
                             />
                         </Form.Item>
@@ -65,7 +65,7 @@ const LoginPage = () => {
                         >
                             <Input.Password
                                 style={{ width: 400, height: 50 }}
-                                prefix={<LockOutlined className="site-form-item-icon" />}
+                                prefix={<LockOutlined className="site-form-item-icon text-xl " />}
                                 type="password"
                                 placeholder="Mật khẩu"
                             />

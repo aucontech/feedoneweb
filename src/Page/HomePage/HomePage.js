@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
-// import QuanLyVungNuoiAntd from '../../VungNuoi/QuanLyVungNuoiAntd';
+import QuanLyVungNuoiAntd from '../../VungNuoi/QuanLyVungNuoiAntd';
 // import QuanLyVungNuoi from '../../VungNuoi/QuanLyVungNuoi';
-// import SideBar from '../SideBarPage/SideBarHome';
+import SideBar from '../SideBarPage/SideBarHome';
 import Stations from '../../Stations/Stations';
-// import TestProject from '../../VungNuoi/Test-project';
+import Testproject from '../../VungNuoi/Testproject';
+import LineChart from '../../chart/LineChart';
 
 export default function HomePage() {
     const [collapsed, setCollapsed] = useState(false);
@@ -14,12 +15,13 @@ export default function HomePage() {
 
     return (
         <div>
-            <div className='bg-gray-200' style={{ display: 'flex', flexDirection: 'row' }}>
-                {/* <SideBar collapsed={collapsed} toggleCollapsed={toggleCollapsed} setContent={setContent} /> */}
+            <div className='bg-gray-300' style={{ display: 'flex', flexDirection: 'row' }}>
+                <SideBar collapsed={collapsed} toggleCollapsed={toggleCollapsed} setContent={setContent} />
                 {/* <QuanLyVungNuoi /> */}
                 {/* <QuanLyVungNuoiAntd /> */}
-                <Stations />
-                {/* <TestProject /> */}
+                {/* <Stations /> */}
+                {/* <Testproject /> */}
+                {/* <LineChart /> */}
             </div>
         </div>
     )

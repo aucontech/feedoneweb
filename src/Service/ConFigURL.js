@@ -8,7 +8,15 @@ export const ApiUpdateArea = "/farmingarea/update"
 export const ApiLoadStations = "/stations"
 export const ApiUpdateCreate = "/station/update"
 
+export const ApiFeedByDate = "/getfeedbydate"
+export const ApiStartEndChart = {
+    "data": {
+        "startdate": "2022-12-01",
+        "enddate": "2023-04-20",
+        "aoid": 9,
 
+    }
+}
 
 export const startAndlimit = {
     "start": 0, "limit": 0

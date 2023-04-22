@@ -11,6 +11,7 @@ import { RootReducers } from './Service/RootReducer';
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const storeRedux = createStore(RootReducers, composeEnhancers(applyMiddleware(thunk)))
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 root.render(
 
   <Provider store={storeRedux} >

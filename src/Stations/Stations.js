@@ -75,17 +75,6 @@ export default function Stations() {
         setIsModalVisible(true)
     }
 
-    const handleOk = () => {
-        setIsModalVisible(false)
-    }
-
-    const handleCancel = () => {
-        setIsModalVisible(false)
-    }
-
-
-
-
     const row = [
         {
             title: 'Tên trạm',
@@ -101,14 +90,10 @@ export default function Stations() {
             title: 'Action',
             key: 'action',
             render: (text, record) => (
-                <Button type="primary" danger onClick={() => handleDelete(record.id)}>Delete</Button>
+                <Button type='primary' danger onClick={() => handleDelete(record.id)}>Delete</Button>
             ),
         },
     ];
-
-
-
-
     return (
         <div>
             <Button type="primary" onClick={showModal}>Thêm trạm</Button>

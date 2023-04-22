@@ -1,8 +1,8 @@
-import { message, Form, Input, Button } from 'antd';
+import { message, Form, Input, Button, Card } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ApiUpdateArea, ContentType, https, listFarmingArea } from '../Service/ConFigURL';
-import { Table, } from 'antd';
+import { Table } from 'antd';
 import "./QuanLyVungNuoi.css"
 export default function QuanLyVungNuoiAntd() {
     let history = useNavigate();
@@ -140,50 +140,73 @@ export default function QuanLyVungNuoiAntd() {
     ];
 
     return (
-        <div className="flex table-list" scroll={{ x: 1000 }}>
+        <div className=" flex table-list" >
             <div  >
                 <Table className="ant-table" columns={columns} dataSource={farmingAreas} onRow={(record) => ({
                     onClick: () => handleRowClick(record),
                 })} />
 
             </div>
-            {selectedFarmingArea && (
-                <Form key={selectedFarmingArea.id + "reset"} className="FormAntd" onFinish={handleUpdate}  >
-                    <Button onClick={() => setSelectedFarmingArea(null)}><i className="fa fa-window-close text-2xl" />
-                    </Button>
+            {/* <div className='flex py-10' >
+                {farmingAreas.map((area, item) => (
+                    < Card
+                        key={item}
+                        className='px-10 mx-10 text-gray-500'
+                        style={{ border: 1, width: 350, height: 300, textAlign: "left", cursor: "pointer" }}
+                        title={<span className='text-lg text-blue-400' >{area.name} <i style={{ font: 40 }} className="fab fa-slack" /></span>}
+                        bordered={false}
+                    >
+                        <div>
+                            <p className='flex text-sm py-2' > <p >Diện tích</p>  : {area.area}</p>
+                            <p className='flex text-sm' > <p>Kinh độ </p>: {area.longitude}</p>
+                            <p className='flex text-sm py-2' > <p>Vĩ độ</p> : {area.latitude}</p>
+                            <p className='flex text-sm' > <p>Tỉnh </p> : {area.province}</p>
+                            <p className='flex text-sm py-2' > <p>Huyện</p> : {area.district}</p>
+                            <p className='flex text-sm' > <p>Phường</p> : {area.wards}</p>
+                            <p className='flex text-sm py-2' > <p>Địa chỉ</p> : {area.address}</p>
+                        </div>
+                    </Card>
+                ))}
+            </div> */}
 
-                    <Form.Item label="ID">
-                        <Input className='' value={selectedFarmingArea.id} disabled />
-                    </Form.Item>
-                    <Form.Item label="Vùng Nuôi" >
-                        <Input style={{ width: "200px" }} defaultValue={selectedFarmingArea.name} onChange={(e) => setSelectedFarmingArea({ ...selectedFarmingArea, name: e.target.value })} />
-                    </Form.Item>
-                    <Form.Item label="Diện tích">
-                        <Input className='ml-2' style={{ width: "200px" }} defaultValue={selectedFarmingArea.area} onChange={(e) => setSelectedFarmingArea({ ...selectedFarmingArea, area: e.target.value })} />
-                    </Form.Item>
-                    <Form.Item label="Kinh độ">
-                        <Input className='ml-3' style={{ width: "200px" }} defaultValue={selectedFarmingArea.longitude} onChange={(e) => setSelectedFarmingArea({ ...selectedFarmingArea, longitude: e.target.value })} />
-                    </Form.Item>
-                    <Form.Item label="Latitude">
-                        <Input className='ml-2' style={{ width: "200px" }} defaultValue={selectedFarmingArea.latitude} onChange={(e) => setSelectedFarmingArea({ ...selectedFarmingArea, latitude: e.target.value })} />
-                    </Form.Item>
-                    <Form.Item label="province">
-                        <Input className='ml-1' style={{ width: "200px" }} defaultValue={selectedFarmingArea.province} onChange={(e) => setSelectedFarmingArea({ ...selectedFarmingArea, province: e.target.value })} />
-                    </Form.Item>
-                    <Form.Item label="district">
-                        <Input className='ml-3' style={{ width: "200px" }} defaultValue={selectedFarmingArea.district} onChange={(e) => setSelectedFarmingArea({ ...selectedFarmingArea, district: e.target.value })} />
-                    </Form.Item>
-                    <Form.Item label="wards">
-                        <Input className='ml-4' style={{ width: "200px" }} defaultValue={selectedFarmingArea.wards} onChange={(e) => setSelectedFarmingArea({ ...selectedFarmingArea, wards: e.target.value })} />
-                    </Form.Item>
+            {
+                selectedFarmingArea && (
+                    <Form key={selectedFarmingArea.id + "reset"} className="FormAntd" onFinish={handleUpdate}  >
+                        <Button onClick={() => setSelectedFarmingArea(null)}><i className="fa fa-window-close text-2xl" />
+                        </Button>
 
-                    <Button style={{ width: 100 }} type="primary" htmlType="submit">Submit</Button>
-                    <Button onClick={handleCreate} >Add</Button>
-                    <Button type="default" htmlType="reset">
-                        Clear
-                    </Button>
-                </Form>
-            )
+                        <Form.Item label="ID">
+                            <Input className='' value={selectedFarmingArea.id} disabled />
+                        </Form.Item>
+                        <Form.Item label="Vùng Nuôi" >
+                            <Input style={{ width: "200px" }} defaultValue={selectedFarmingArea.name} onChange={(e) => setSelectedFarmingArea({ ...selectedFarmingArea, name: e.target.value })} />
+                        </Form.Item>
+                        <Form.Item label="Diện tích">
+                            <Input className='ml-2' style={{ width: "200px" }} defaultValue={selectedFarmingArea.area} onChange={(e) => setSelectedFarmingArea({ ...selectedFarmingArea, area: e.target.value })} />
+                        </Form.Item>
+                        <Form.Item label="Kinh độ">
+                            <Input className='ml-3' style={{ width: "200px" }} defaultValue={selectedFarmingArea.longitude} onChange={(e) => setSelectedFarmingArea({ ...selectedFarmingArea, longitude: e.target.value })} />
+                        </Form.Item>
+                        <Form.Item label="Latitude">
+                            <Input className='ml-2' style={{ width: "200px" }} defaultValue={selectedFarmingArea.latitude} onChange={(e) => setSelectedFarmingArea({ ...selectedFarmingArea, latitude: e.target.value })} />
+                        </Form.Item>
+                        <Form.Item label="province">
+                            <Input className='ml-1' style={{ width: "200px" }} defaultValue={selectedFarmingArea.province} onChange={(e) => setSelectedFarmingArea({ ...selectedFarmingArea, province: e.target.value })} />
+                        </Form.Item>
+                        <Form.Item label="district">
+                            <Input className='ml-3' style={{ width: "200px" }} defaultValue={selectedFarmingArea.district} onChange={(e) => setSelectedFarmingArea({ ...selectedFarmingArea, district: e.target.value })} />
+                        </Form.Item>
+                        <Form.Item label="wards">
+                            <Input className='ml-4' style={{ width: "200px" }} defaultValue={selectedFarmingArea.wards} onChange={(e) => setSelectedFarmingArea({ ...selectedFarmingArea, wards: e.target.value })} />
+                        </Form.Item>
+
+                        <Button style={{ width: 100 }} type="primary" htmlType="submit">Submit</Button>
+                        <Button onClick={handleCreate} >Add</Button>
+                        <Button type="default" htmlType="reset">
+                            Clear
+                        </Button>
+                    </Form>
+                )
             }
         </div >
     );
