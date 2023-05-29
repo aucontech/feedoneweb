@@ -1,0 +1,12 @@
+
+.bar-side{
+    font-size: 20px;
+    align-items: center;
+}
+.button-side-bar{
+    margin-right: 100px;
+    
+}
+.Menu{
+    position: fixed;
+}

@@ -1,0 +1,93 @@
+/* 
+.form-input  {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+
+
+  
+  button[type="submit"] {
+    background-color:#036E9B ;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 250px;
+    height: 50px;
+    margin-top: 20px;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #155f7e ;
+  }
+  .id-pass-input{
+    margin-right: 290px;    
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 20px;
+    color:#036E9B ;
+  }
+  
+  .error-message {
+    color: red;
+    font-size: 14px;
+    margin: 5px 0 10px 0;
+  }
+  .logoFish{
+    margin-left: 90px;
+    width: 330px;
+  }
+/* .text-hethong{
+  color: #036E9B;
+  font-size: 45px;
+  font-weight: 700;
+} */
+
+
+
+.login-form-button{
+  width:200px;
+  height: 50px;
+  border-radius: 10px;
+  background-color: #036E9B;
+  font-size: 20px;
+}
+
+.text-hethong{
+  color: #036E9B;
+  font-size: 40px;
+  font-weight: 600;
+}
+   .login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #036E9B;
+  }
+  .login-form-subtitle{
+    font-size: 20px;
+    color: gray;
+  }
+
+  .login-form-container {
+    margin-bottom: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  height: 600px;
+    width: 500px;
+    background-color: white;
+    border-radius: 10px;
+  }
+  .fishsh{
+    width: 400px;
+  }
+.login-pass-id{
+    border: 1px solid #036E9B;
+  }
