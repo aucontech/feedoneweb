@@ -21,14 +21,13 @@ export default function TestMenu() {
 
     const [loadNameFaming, setLoadNameFarming] = useState([]);// load vùng nuôi
     const [pondData, setPondData] = useState([]) // load ao nuôi
-    const [selectedFarmingAreaId] = useState();// dùng để liên kết ao và chart 
+    const [selectedFarmingAreaId, setSelectedFarmingArea] = useState();// dùng để liên kết ao và chart 
     const [filteredData, setFilteredData] = useState([]);// hàm để hứng , lấy trực tiếp ao nuôi được lấy từ state pondData
 
     // --------------------------------------------useState của loadChart --------------------------------------------------------------------
     const [listQuantities, setListQuantities] = useState([]); // state lấy dữ liệu chart của loadChart
     const [startDateKg, setStartDateKg] = useState(null);
     const [endDateKg, setEndDateKg] = useState(null);
-    const [datekg, setDateKg] = useState(null);
     const [dataFishPondKg, setDataFishPondKg] = useState([]);
     const [datePickerValueKg, setDatePickerValueKg] = useState(null);
     const [nameTableKg, setNameTableKg] = useState([]);
@@ -38,7 +37,6 @@ export default function TestMenu() {
 
     //------------------------------------------- useState của LoadPondBag --------------------------------------------------------------------
     const [listQuantityAo, setListQuantityAo] = useState([])// state lấy dữ liệu chart của loadPondBag
-    const [dataFishPondBag, setDataFishPondBag] = useState([]);
     const [nameTableBag, setNameTableBag] = useState([]);
     const [startDateBag, setStartDateBag] = useState(null);
     const [endDateBag, setEndDateBag] = useState(null);

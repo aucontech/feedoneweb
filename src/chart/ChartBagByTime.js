@@ -194,7 +194,7 @@ export default function ChartBagByTime() {
         },
 
         legend: {
-            show: false,
+            show: true,
             showForSingleSeries: true,
             showForNullSeries: true,
             showForZeroSeries: false,

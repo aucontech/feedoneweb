@@ -38,20 +38,7 @@ export default function QuanLyVungNuoiAntd() {
         setSelectedFarmingArea(record);
         setSelectedId(record.id === selectId ? null : record.id);
     };
-    const handleDelete = async (id) => {
-        try {
-            const confirmed = window.confirm("Bạn có chắn chắn muốn xóa vùng nuôi này? ")
-            if (confirmed) {
-                await https.delete(`/farmingareas/${id}`);
-                setFarmingAreas(farmingAreas.filter((farmingArea) => farmingArea.id !== id));
-                setSelectedFarmingArea(null);
-                setShowFormInput(false);
-            }
 
-        } catch (error) {
-            console.error(error);
-        }
-    };
     const handleUpdate = async () => {
         try {
             const res = await https.post(ApiUpdateArea, { data: selectedFarmingArea }, {
@@ -87,7 +74,20 @@ export default function QuanLyVungNuoiAntd() {
             console.log(err);
         }
     }
+    const handleDelete = async (id) => {
+        try {
+            const confirmed = window.confirm("Bạn có chắn chắn muốn xóa vùng nuôi này? ")
+            if (confirmed) {
+                await https.delete(`/farmingareas/${id}`);
+                setFarmingAreas(farmingAreas.filter((farmingArea) => farmingArea.id !== id));
+                setSelectedFarmingArea(null);
+                setShowFormInput(false);
+            }
 
+        } catch (error) {
+            console.error(error);
+        }
+    };
     const columns = [
         {
             title: 'ID',
