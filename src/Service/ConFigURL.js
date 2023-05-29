@@ -41,7 +41,7 @@ export const ParamsOfAccumulated = { // Params của API lũy kế lũy kế s�
 export const updateListFeed = "/updatefeed"
 
 export const https = axios.create({ //https của tất cả API 
-    baseURL: "http://easyfeed.vn/v1",
+    baseURL: "http://localhost:8300/v1",
 })
 https.interceptors.request.use( // quét token liên tục
     (config) => {
