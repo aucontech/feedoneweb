@@ -216,7 +216,7 @@ export default function TestMenu() {
             width: 0.1,
             dashArray: [0, 0, 8]
         },
-        colors: ['#FB7B8E'],
+        colors: ['#0A8FDC'],
         tooltip: {
             enabled: true,
             theme: "dark",
@@ -255,10 +255,27 @@ export default function TestMenu() {
             offsetY: 0,
             style: {
                 fontSize: '13px',
-                colors: ["#0A8FDC"],
+                colors: ["#FF5252"],
                 fontWeight: 400,
 
-            }
+            },
+            background: {
+                enabled: false,
+                foreColor: '#fff',
+                padding: 4,
+                borderRadius: 2,
+                borderWidth: 1,
+                borderColor: '#fff',
+                opacity: 0.9,
+                dropShadow: {
+                    enabled: false,
+                    top: 1,
+                    left: 1,
+                    blur: 1,
+                    color: '#000',
+                    opacity: 0.45
+                }
+            },
         },
 
 
@@ -335,7 +352,8 @@ export default function TestMenu() {
                 colors: ["#DE5B6D"],
                 fontWeight: 400,
 
-            }
+            },
+
         },
 
 
@@ -570,7 +588,8 @@ export default function TestMenu() {
                 colors: ["#FF5252"],
                 fontWeight: 400,
 
-            }
+            },
+
         },
 
 
