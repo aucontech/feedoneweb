@@ -1917,7 +1917,6 @@ export default function TestMenu() {
                                 </div>
                                 <div className=' px-2' style={{ borderRadius: 5 }}  >
                                     <ChartBagByTime />
-
                                 </div>
                             </div>
 
