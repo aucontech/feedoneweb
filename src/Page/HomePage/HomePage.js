@@ -1,10 +1,16 @@
 import React, { useState } from 'react'
+import SidebarHome from '../SideBarPage/SideBarHome';
+import TestMenu from '../../chart/TestMenu';
+import ChartTestAo from '../../chart/ChartTestAo';
+import ChartTest from '../../chart/ChartTest';
+import DuBaoThoiTiet from '../../test/DuBaoThoiTiet';
+import QuanTrac from '../../chart/QuanTrac';
+import TestObj from '../../chart/TestObj';
+import DayByMonth from '../../chart/DayByMonth';
+import UpdateFeed from '../../chart/UpdateFeed';
 import QuanLyVungNuoiAntd from '../../VungNuoi/QuanLyVungNuoiAntd';
-// import QuanLyVungNuoi from '../../VungNuoi/QuanLyVungNuoi';
-import SideBar from '../SideBarPage/SideBarHome';
-import Stations from '../../Stations/Stations';
-import Testproject from '../../VungNuoi/Testproject';
-import LineChart from '../../chart/LineChart';
+import TestRoles from '../../chart/TestRoles';
+import AccumulatedChart from '../../chart/AccumulatedChart';
 
 export default function HomePage() {
     const [collapsed, setCollapsed] = useState(false);
@@ -15,13 +21,19 @@ export default function HomePage() {
 
     return (
         <div>
-            <div className='bg-gray-300' style={{ display: 'flex', flexDirection: 'row' }}>
-                <SideBar collapsed={collapsed} toggleCollapsed={toggleCollapsed} setContent={setContent} />
-                {/* <QuanLyVungNuoi /> */}
+            <div className=" " style={{ display: '', flexDirection: 'row', }}>
+                {/* <SidebarHome collapsed={collapsed} toggleCollapsed={toggleCollapsed} setContent={setContent} /> */}
+                {/* <ChartTest /> */}
+                {/* <ChartTestAo /> */}
+                <TestMenu />
+                {/* <DuBaoThoiTiet /> */}
+                {/* <QuanTrac /> */}
+                {/* <TestObj x/> */}
+                {/* <DayByMonth /> */}
+                {/* <UpdateFeed /> */}
                 {/* <QuanLyVungNuoiAntd /> */}
-                {/* <Stations /> */}
-                {/* <Testproject /> */}
-                {/* <LineChart /> */}
+                {/* <TestRoles /> */}
+                {/* <AccumulatedChart /> */}
             </div>
         </div>
     )

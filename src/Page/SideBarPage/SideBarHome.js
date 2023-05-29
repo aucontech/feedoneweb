@@ -1,82 +1,106 @@
 import {
-    AppstoreOutlined,
-    ContainerOutlined,
-    PieChartOutlined,
-    DesktopOutlined,
-    MailOutlined,
+    MenuFoldOutlined,
+    UploadOutlined,
+    UserOutlined,
+    VideoCameraOutlined,
 } from '@ant-design/icons';
-import { Button, Menu, } from 'antd';
+import { Button, Layout, Menu, theme } from 'antd';
 import { useState } from 'react';
-import "./SideBarHome.css"
-import Stations from '../../Stations/Stations';
-import Testproject from '../../VungNuoi/Testproject';
-import QuanLyVungNuoiAntd from '../../VungNuoi/QuanLyVungNuoiAntd';
-import LineChart from '../../chart/LineChart';
-
-function getItem(label, key, icon, children, component) {
-    return {
-        key,
-        icon,
-        children,
-        label,
-        component,
-    };
-}
-
-const SidebarHome = () => {
+import QuanTrac from '../../chart/QuanTrac';
+import YearByPond from '../../chart/YearByPond';
+import MonthByYear from '../../chart/MonthByYear';
+import DayByMonth from '../../chart/DayByMonth';
+const { Header, Sider, Content } = Layout;
+export default function SideBarHome() {
     const [collapsed, setCollapsed] = useState(false);
-    const [content, setContent] = useState(null);
-    const toggleCollapsed = () => {
-        setCollapsed(!collapsed);
-    };
-
-    const items = [
-        getItem('Chọn Vùng Nuôi', '1', <PieChartOutlined />, null, <Stations />),
-        getItem('Option 2', '2', <DesktopOutlined />, null, <Testproject />),
-        getItem('Option 3', '3', <ContainerOutlined />, null, <QuanLyVungNuoiAntd />),
-        getItem('Option 4', '4', <ContainerOutlined />, null, <LineChart />),
-        getItem('Navigation One', 'sub1', <MailOutlined />, [
-            getItem('Option 5', '5'),
-            getItem('Option 6', '6'),
-            getItem('Option 7', '7'),
-            getItem('Option 8', '8'),
-        ]),
-        getItem('Navigation Two', 'sub2', <AppstoreOutlined />, [
-            getItem('Option 9', '9'),
-            getItem('Option 10', '10'),
-            getItem('Submenu', 'sub3', null, [getItem('Option 11', '11'), getItem('Option 12', '12')]),
-        ]),
-    ];
-
+    const {
+        token: { colorBgContainer },
+    } = theme.useToken();
     return (
-        <div style={{ display: 'flex' }}>
-            <div style={{ width: 200 }} >
-                <Button
-                    className='text-black h-10 w-10 mr-40 '
-                    type="primary"
-                    onClick={toggleCollapsed}
-                    style={{ marginBottom: 16 }}
-
-                >
-                    <i className="fa fa-bars bar-side " />
-                </Button>
+        <Layout>
+            <Sider trigger={null} collapsible collapsed={collapsed}>
+                <div className="logo" />
                 <Menu
-                    style={{ height: 1000 }}
+                    theme="dark"
+                    mode='inline'
                     defaultSelectedKeys={['1']}
-                    defaultOpenKeys={['sub1']}
-                    mode="inline"
-                    theme="light"
-                    inlineCollapsed={collapsed}
-                    items={items}
-                    onClick={({ key }) => {
-                        const item = items.find(i => i.key === key);
-                        if (item) setContent(item.component);
+                    items={[
+                        {
+                            key: '1',
+                            icon: <UserOutlined />,
+                            label: 'nav 1',
+                            link: '/page1',
+                        },
+                        {
+                            key: '2',
+                            icon: <VideoCameraOutlined />,
+                            label: 'nav 2',
+                        },
+                        {
+                            key: '3',
+                            icon: <UploadOutlined />,
+                            label: 'nav 3',
+                        },
+                    ]}
+                />
+
+            </Sider>
+
+            <div className='flex'>
+                <Button
+                    className='button-sideBar'
+                    type="text"
+                    icon={collapsed ? <MenuFoldOutlined /> : <MenuFoldOutlined />}
+                    onClick={() => setCollapsed(!collapsed)}
+                    style={{
+                        fontSize: '20px',
+                        width: 30,
+                        position: "relative",
                     }}
                 />
+
             </div>
-            <div>{content && <div>{content}</div>}</div>
-        </div >
+            <Layout>
+                <Header
+                    style={{
+                        padding: 0,
+                        background: colorBgContainer,
+                    }}
+                >
+
+                </Header>
+                <Content
+                    style={{
+
+                        margin: '24px 5px',
+                        padding: "",
+                        minHeight: 280,
+                        background: colorBgContainer,
+                    }}
+
+                >
+                    <div className='grid grid-cols-2 '  >
+                        {/* <div className='' style={{ borderRadius: 5 }} >
+                            <ChartTestAo />
+                        </div> */}
+
+                        <div className='' style={{ borderRadius: 5 }} >
+                            <DayByMonth />
+                        </div>
+                        <div className='' style={{ borderRadius: 5 }} >
+                            <MonthByYear />
+                        </div>
+                        <div className='' style={{ borderRadius: 5 }} >
+                            <QuanTrac />
+                        </div>
+                        <div className='' style={{ borderRadius: 5 }} >
+                            <YearByPond />
+                        </div>
+
+
+                    </div>
+                </Content>
+            </Layout>
+        </Layout>
     );
 };
-
-export default SidebarHome;

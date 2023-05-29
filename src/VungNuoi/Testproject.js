@@ -81,8 +81,8 @@ export default function Testproject() {
                 {farmingAreas.map((area, item) => (
                     < Card
                         key={item}
-                        className='px-10 mx-10 text-gray-500'
-                        style={{ border: 1, width: 350, height: 300, textAlign: "left", cursor: "pointer" }}
+                        className=' mx-10 text-gray-500'
+                        style={{ border: 1, width: 300, height: 550, textAlign: "left", cursor: "pointer" }}
                         title={<span className='text-lg text-blue-400' >{area.name} </span>}
                         bordered={false}
                         onClick={() => {

@@ -58,7 +58,6 @@ export default function QuanLyVungNuoiAntd() {
 
             });
             console.log(res);
-            console.log('formData: ', selectedFarmingArea);
             setSelectedId({})
             setSelectedFarmingArea(res.data.data)
             setFarmingAreas(
@@ -147,27 +146,7 @@ export default function QuanLyVungNuoiAntd() {
                 })} />
 
             </div>
-            {/* <div className='flex py-10' >
-                {farmingAreas.map((area, item) => (
-                    < Card
-                        key={item}
-                        className='px-10 mx-10 text-gray-500'
-                        style={{ border: 1, width: 350, height: 300, textAlign: "left", cursor: "pointer" }}
-                        title={<span className='text-lg text-blue-400' >{area.name} <i style={{ font: 40 }} className="fab fa-slack" /></span>}
-                        bordered={false}
-                    >
-                        <div>
-                            <p className='flex text-sm py-2' > <p >Diện tích</p>  : {area.area}</p>
-                            <p className='flex text-sm' > <p>Kinh độ </p>: {area.longitude}</p>
-                            <p className='flex text-sm py-2' > <p>Vĩ độ</p> : {area.latitude}</p>
-                            <p className='flex text-sm' > <p>Tỉnh </p> : {area.province}</p>
-                            <p className='flex text-sm py-2' > <p>Huyện</p> : {area.district}</p>
-                            <p className='flex text-sm' > <p>Phường</p> : {area.wards}</p>
-                            <p className='flex text-sm py-2' > <p>Địa chỉ</p> : {area.address}</p>
-                        </div>
-                    </Card>
-                ))}
-            </div> */}
+
 
             {
                 selectedFarmingArea && (

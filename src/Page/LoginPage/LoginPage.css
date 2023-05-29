@@ -1,4 +1,4 @@
-
+/* 
 .form-input  {
     display: flex;
     flex-direction: column;
@@ -41,45 +41,53 @@
     margin-left: 90px;
     width: 330px;
   }
-.text-hethong{
+/* .text-hethong{
   color: #036E9B;
   font-size: 45px;
   font-weight: 700;
-}
-.renderHandleSubmit{
+} */
+
+
+
+.login-form-button{
+  width:200px;
+  height: 50px;
   border-radius: 10px;
-  background-color: #fff;
+  background-color: #036E9B;
+  font-size: 20px;
+}
+
+.text-hethong{
+  color: #036E9B;
+  font-size: 40px;
+  font-weight: 600;
+}
+   .login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #036E9B;
+  }
+  .login-form-subtitle{
+    font-size: 20px;
+    color: gray;
+  }
+
+  .login-form-container {
+    margin-bottom: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   height: 600px;
-  top: 50px;
-  margin-left: 470px;;
-  width: 500px;
-  position: relative;
-}
-.fishSH{
-  width: 100%;
-  height: 100%;
-    background-color: #155f7e;
-  position: absolute;
-  z-index: 0;
-}
-.fishsh{
-  top: 100px;
-  margin-left: 735px;
-  width: 450px;
-  position: absolute;
-  z-index: 2;
-}
-.login-form-subtitle{
-  font-size: 30px;
-  color:gray;
-
-}
-
-
-
-
-
-
-
-
-  
+    width: 500px;
+    background-color: white;
+    border-radius: 10px;
+  }
+  .fishsh{
+    width: 400px;
+  }
+.login-pass-id{
+    border: 1px solid #036E9B;
+  }

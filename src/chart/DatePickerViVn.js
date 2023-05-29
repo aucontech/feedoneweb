@@ -16,7 +16,7 @@ export const customLocale = {
         monthSelect: 'Chọn tháng',
         yearSelect: 'Chọn năm',
         decadeSelect: 'Chọn thập kỷ',
-        yearFormat: 'YYYY',
+        yearFormat: '/ YYYY',
         dateFormat: 'DD/MM/YYYY',
         dayFormat: 'D',
         dateTimeFormat: 'DD/MM/YYYY HH:mm:ss',
@@ -30,7 +30,20 @@ export const customLocale = {
         previousCentury: 'Thế kỷ trước',
         nextCentury: 'Thế kỷ sau',
         shortWeekDays: ['T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'CN'],
-        shortMonths: ['Thg 1', 'Thg 2', 'Thg 3', 'Thg 4', 'Thg 5', 'Thg 6', 'Thg 7', 'Thg 8', 'Thg 9', 'Thg 10', 'Thg 11', 'Thg 12'],
+        shortMonths: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'],
     },
 };
 
+
+export const customYear = {
+    lang: {
+        locale: 'vi',
+        placeholder: 'Chọn năm',
+    }
+}
+export const customMonth = {
+    lang: {
+        locale: 'vi',
+        placeholder: 'Chọn Tháng',
+    }
+}

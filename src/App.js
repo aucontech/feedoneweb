@@ -4,6 +4,8 @@ import Layout from './HOC/Layout';
 import HomePage from './Page/HomePage/HomePage';
 import LoginPage from './Page/LoginPage/LoginPage';
 import Testproject from './VungNuoi/Testproject';
+import AccumulatedChart from './chart/AccumulatedChart';
+import ChartTestAo from './chart/ChartTestAo';
 
 function App() {
   return (
@@ -16,6 +18,11 @@ function App() {
 
           <Route path='/' element={<LoginPage />} />
           <Route path='/test' element={<Testproject />} />
+
+          <Route path='/Acumulated' element={<Layout Component={AccumulatedChart} />} />
+          <Route path='/ChartKg' element={<Layout Component={ChartTestAo} />} />
+
+
         </Routes>
 
       </BrowserRouter>

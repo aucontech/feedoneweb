@@ -1,0 +1,167 @@
+.tableLuyKe{
+    width: 300px;
+    height: 100px;
+    background-color: white;
+    border-radius: 10px;
+}
+.ant-picker-suffix{
+    display: none;
+}
+.border{
+    border: 3px solid white;
+    
+    border-radius: 5px;
+}
+.fixed-menu {
+    position: fixed;
+  }
+
+  .chart-res {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .chart-res.fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+  }
+  .menu-wrapper{
+    overflow-y: auto;
+  }
+  @media (min-width:1441px){
+    
+    .render-chartLuyKe{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+.responsive-luyke {
+    width: 800px;
+    
+}
+    .MonthByYearChart{
+        width: 1625px
+    }
+    .responsive-chart{
+        width: 810px;
+    }
+    .table-Chart1{
+        width: 800px;
+      }
+      .menu-VungNuoi{
+        max-height: 1200px;
+      }
+        .responsive-chartQuanTrac{
+            width: 1625px;
+        }
+        .render-QuanTrac{
+            width: 1620px;
+        }
+        .table-ChartQuanTrac{
+            width: 1625px;
+
+        }
+        .responsive-YearByPond{
+            width: 1625px;
+        }
+        .responsive-MonByYear{
+            width: 1635px;
+        }
+  }
+
+@media (min-width:1025px) and (max-width:1440px){
+    .render-chart{
+        
+    } 
+    .render-chartLuyKe{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+    .MonthByYearChart{
+        width: 1160px;
+    }
+    .responsive-chart{
+        width: 600px;
+        
+    }
+  .table-Chart1{
+    width: 580px;
+  }
+  .menu-VungNuoi{
+    max-height: 620px;
+  }
+
+    .responsive-chartQuanTrac{
+        width: 1200px;
+    }
+    .render-QuanTrac{
+        width: 1200px;
+        
+    }
+    .table-ChartQuanTrac{
+        width: 1200px;
+    }
+    .responsive-YearByPond{
+        width: 1185px;
+    }
+
+}
+@media (min-width : 481px) and (max-width:1024px){
+    .render-chart{
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+
+    } 
+    .MonthByYearChart{
+        width: 600px;
+    }
+    .responsive-chart{
+        width: 600px;
+    
+    }
+    .table-Chart1{
+        width: 700px;
+      }
+      .responsive-chartQuanTrac{
+        width: 700px;
+    }
+      .render-QuanTrac{
+        width: 700px;
+    }
+    .table-ChartQuanTrac{
+        width: 700px;
+
+
+    }
+}
+
+@media (min-width :320px) and (max-width:480px){
+    .render-chart{
+        display: grid;
+        grid-template-columns: 1fr;
+    } 
+    .responsive-chart{
+        width: 300px;
+    
+    }
+}
+
+.ant-tabs-nav-list{
+    margin-left: 10px;
+}
+.anticon-close-circle{
+    display: none;
+}
+
+
+.text-titleBorder{
+    border-radius: 5px 5px 0px 0px;
+    background: #036E9B;
+}
+.bg-menu-tag{
+    width: auto;
+}
