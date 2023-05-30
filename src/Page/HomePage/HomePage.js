@@ -5,7 +5,6 @@ import ChartTestAo from '../../chart/ChartTestAo';
 import ChartTest from '../../chart/ChartTest';
 import DuBaoThoiTiet from '../../test/DuBaoThoiTiet';
 import QuanTrac from '../../chart/QuanTrac';
-import TestObj from '../../chart/TestObj';
 import DayByMonth from '../../chart/DayByMonth';
 import UpdateFeed from '../../chart/UpdateFeed';
 import QuanLyVungNuoiAntd from '../../VungNuoi/QuanLyVungNuoiAntd';
@@ -28,7 +27,6 @@ export default function HomePage() {
                 <TestMenu />
                 {/* <DuBaoThoiTiet /> */}
                 {/* <QuanTrac /> */}
-                {/* <TestObj x/> */}
                 {/* <DayByMonth /> */}
                 {/* <UpdateFeed /> */}
                 {/* <QuanLyVungNuoiAntd /> */}

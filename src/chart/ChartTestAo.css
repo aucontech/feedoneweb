@@ -72,9 +72,7 @@
   }
 
 @media (min-width:1025px) and (max-width:1440px){
-    .render-chart{
-        
-    } 
+  
     .render-chartLuyKe{
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -105,23 +103,21 @@
         width: 1200px;
     }
     .responsive-YearByPond{
-        width: 1185px;
+        width: 1200px;
     }
-
+ 
 }
 @media (min-width : 481px) and (max-width:1024px){
     .render-chart{
         display: grid;
         grid-template-columns: 1fr;
         gap: 10px;
-
     } 
     .MonthByYearChart{
         width: 600px;
     }
     .responsive-chart{
         width: 600px;
-    
     }
     .table-Chart1{
         width: 700px;
@@ -134,8 +130,6 @@
     }
     .table-ChartQuanTrac{
         width: 700px;
-
-
     }
 }
 

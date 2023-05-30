@@ -27,6 +27,7 @@ export default function ChartBagByTime() {
 
     const [selectStartDate, setSelectStartDate] = useState();
     const [selectEndDate, setSelectEndDate] = useState();
+
     useEffect(
         () => {
             const fetchData = async () => {
@@ -51,8 +52,6 @@ export default function ChartBagByTime() {
     useEffect(() => {
         fetchPond()
     }, [selectEndDate, selectStartDate, loadNameFaming])
-
-
 
 
     const fetchPond = async () => {
@@ -84,13 +83,6 @@ export default function ChartBagByTime() {
             console.log("err: ", err);
         }
     };
-
-
-
-
-
-
-
 
     useEffect(() => {
         if (selectedFarmingAreaId) {
@@ -194,7 +186,7 @@ export default function ChartBagByTime() {
         },
 
         legend: {
-            show: false,
+            show: true,
             showForSingleSeries: true,
             showForNullSeries: true,
             showForZeroSeries: false,

@@ -38,6 +38,8 @@ export const ParamsOfAccumulated = { // Params của API lũy kế lũy kế s�
     }
 }
 
+export const ApiChartPump = "/getpumpstatistics"
+
 export const updateListFeed = "/updatefeed"
 
 export const https = axios.create({ //https của tất cả API 

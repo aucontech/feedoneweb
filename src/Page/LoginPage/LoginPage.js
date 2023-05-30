@@ -4,7 +4,6 @@ import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { setToken } from "../../Service/TokenReducers";
 import logoFish from "./img/logo-vh.png";
 import fishSh from "./img/fish.png";
 import "./LoginPage.css";
