@@ -30,7 +30,7 @@
   .menu-wrapper{
     overflow-y: auto;
   }
-  @media (min-width:1441px){
+  @media (min-width:1200px){
     
     .render-chartLuyKe{
         display: grid;
@@ -45,7 +45,7 @@
         width: 1625px
     }
     .responsive-chart{
-        width: 810px;
+        width: 610px;
     }
     .table-Chart1{
         width: 800px;
@@ -63,15 +63,13 @@
             width: 1625px;
 
         }
-        .responsive-YearByPond{
-            width: 1625px;
-        }
+      
         .responsive-MonByYear{
-            width: 1635px;
+            width: 1235px;
         }
   }
 
-@media (min-width:1025px) and (max-width:1440px){
+@media (min-width:992px) and (max-width:1199px){
   
     .render-chartLuyKe{
         display: grid;
@@ -82,28 +80,28 @@
         width: 1160px;
     }
     .responsive-chart{
-        width: 600px;
+        width: 450px;
         
     }
   .table-Chart1{
-    width: 580px;
+    width: 450px;
   }
   .menu-VungNuoi{
     max-height: 620px;
   }
 
     .responsive-chartQuanTrac{
-        width: 1200px;
+        width: 870px;
     }
     .render-QuanTrac{
         width: 1200px;
         
     }
     .table-ChartQuanTrac{
-        width: 1200px;
+        width: 870px;
     }
     .responsive-YearByPond{
-        width: 1200px;
+        width: 870px;
     }
  
 }
