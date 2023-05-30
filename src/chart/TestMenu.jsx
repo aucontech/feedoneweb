@@ -1768,7 +1768,7 @@ export default function TestMenu() {
                             options={optionsMon}
                             series={optionsMon.series}
                             type="line"
-                            className="responsive-chartQuanTrac"
+                            className="responsive-YearByPond"
                             height={450}
                         />
                     </TabPane>
@@ -1783,9 +1783,9 @@ export default function TestMenu() {
                             <p>Lịch sử thông số đo {nameValue.name} - {dataFishPondKg.name} </p>
                         </div>
                         {filteredTableDataMon.length > 0 ? (
-                            <Table className='table-ChartQuanTrac' dataSource={filteredTableDataMon.length > 0 ? filteredTableDataMon : Value} pagination={{ pageSize: 10 }} columns={columnsMon} />
+                            <Table className='responsive-YearByPond' dataSource={filteredTableDataMon.length > 0 ? filteredTableDataMon : Value} pagination={{ pageSize: 10 }} columns={columnsMon} />
                         ) : (
-                            <Table className='table-ChartQuanTrac' dataSource={Value} pagination={{ pageSize: 10 }} columns={columnsMon} />
+                            <Table className='responsive-YearByPond' dataSource={Value} pagination={{ pageSize: 10 }} columns={columnsMon} />
                         )}
                     </TabPane>
                 </Tabs>

@@ -30,117 +30,40 @@
   .menu-wrapper{
     overflow-y: auto;
   }
-  @media (min-width:1200px){
-    
-    .render-chartLuyKe{
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 10px;
-    }
-.responsive-luyke {
-    width: 800px;
-    
-}
-    .MonthByYearChart{
-        width: 1625px
-    }
-    .responsive-chart{
-        width: 610px;
-    }
-    .table-Chart1{
-        width: 800px;
-      }
-      .menu-VungNuoi{
-        max-height: 1200px;
-      }
-        .responsive-chartQuanTrac{
-            width: 1625px;
-        }
-        .render-QuanTrac{
-            width: 1620px;
-        }
-        .table-ChartQuanTrac{
-            width: 1625px;
 
-        }
-      
-        .responsive-MonByYear{
-            width: 1235px;
-        }
-  }
-
-@media (min-width:992px) and (max-width:1199px){
+  @media (min-width: 992px) and (max-width: 1199px) {
   
     .render-chartLuyKe{
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 10px;
     }
-    .MonthByYearChart{
-        width: 1160px;
-    }
+   
     .responsive-chart{
-        width: 450px;
-        
+       width: 390px;
     }
-  .table-Chart1{
-    width: 450px;
-  }
-  .menu-VungNuoi{
-    max-height: 620px;
-  }
-
-    .responsive-chartQuanTrac{
-        width: 870px;
-    }
-    .render-QuanTrac{
-        width: 1200px;
-        
-    }
-    .table-ChartQuanTrac{
-        width: 870px;
-    }
+  
     .responsive-YearByPond{
-        width: 870px;
+        width: 800px;
     }
  
 }
-@media (min-width : 481px) and (max-width:1024px){
-    .render-chart{
+@media (min-width: 1280px)  {
+    .render-chartLuyKe{
         display: grid;
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
         gap: 10px;
-    } 
-    .MonthByYearChart{
-        width: 600px;
     }
+   
     .responsive-chart{
-        width: 600px;
+       width: 610px;
     }
-    .table-Chart1{
-        width: 700px;
-      }
-      .responsive-chartQuanTrac{
-        width: 700px;
-    }
-      .render-QuanTrac{
-        width: 700px;
-    }
-    .table-ChartQuanTrac{
-        width: 700px;
+  
+    .responsive-YearByPond{
+        width: 1225px;
     }
 }
 
-@media (min-width :320px) and (max-width:480px){
-    .render-chart{
-        display: grid;
-        grid-template-columns: 1fr;
-    } 
-    .responsive-chart{
-        width: 300px;
-    
-    }
-}
 
 .ant-tabs-nav-list{
     margin-left: 10px;
