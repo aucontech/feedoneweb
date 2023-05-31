@@ -189,44 +189,42 @@ export default function YearByPond() {
     return (
         <div>
             <div className=" bg-white" style={{ borderRadius: 5 }} >
-                <div className=''>
-                    <div className="text-lg  text-titleBorder " style={{ color: " white", fontWeight: 400, background: "#036E9B", position: "relative", }} >
+                <div className="text-lg  text-titleBorder " style={{ color: " white", fontWeight: 400, background: "#036E9B", position: "relative", }} >
 
 
-                        <p className='' >Lượng tiêu thụ thức ăn vùng nuôi  {selectedFarmingAreaName}  năm {selectedYear} (Tấn) </p>
+                    <p className='' >Lượng tiêu thụ thức ăn vùng nuôi  {selectedFarmingAreaName}  năm {selectedYear} (Tấn) </p>
 
-                    </div>
-                    <div style={{ position: 'relative', top: 40, zIndex: 9999 }} >
-                        <Select
-                            value={selectedFarmingAreaId}
-                            onChange={handleSelectChange}
-                            defaultValue="Chọn Vùng Nuôi"
-                            style={{ width: 160, }}
-                        >
-                            {loadNameFaming.map((item) => (
-                                <Select.Option key={item.id} value={item.id}>
-                                    {item.name}
-                                </Select.Option>
-                            ))}
-                        </Select>
-                        <DatePicker sdefaultValue={dayjs("2023", monthFormat)} format={monthFormat} picker='year' onChange={handleDatePickerYear} />
-                    </div>
-                    <Tabs defaultActiveKey='1' className='' style={{ position: 'relative', }} onChange={onChange} >
-                        <TabPane tab={
-                            <span>
-                                <BsBarChart size={20} />
-                            </span>} >
-
-                            <ReactApexChart
-
-                                options={options}
-                                series={[{ data: chartData }]}
-                                type="bar"
-                                height={300}
-                            />
-                        </TabPane>
-                    </Tabs>
                 </div>
+                <div style={{ position: 'relative', top: 40, zIndex: 9999 }} >
+                    <Select
+                        value={selectedFarmingAreaId}
+                        onChange={handleSelectChange}
+                        defaultValue="Chọn Vùng Nuôi"
+                        style={{ width: 160, }}
+                    >
+                        {loadNameFaming.map((item) => (
+                            <Select.Option key={item.id} value={item.id}>
+                                {item.name}
+                            </Select.Option>
+                        ))}
+                    </Select>
+                    <DatePicker sdefaultValue={dayjs("2023", monthFormat)} format={monthFormat} picker='year' onChange={handleDatePickerYear} />
+                </div>
+                <Tabs defaultActiveKey='1' onChange={onChange} >
+                    <TabPane tab={
+                        <span>
+                            <BsBarChart size={20} />
+                        </span>} >
+
+                        <ReactApexChart
+
+                            options={options}
+                            series={[{ data: chartData }]}
+                            type="bar"
+                            height={300}
+                        />
+                    </TabPane>
+                </Tabs>
             </div>
         </div >
     )

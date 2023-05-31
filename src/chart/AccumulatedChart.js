@@ -255,7 +255,7 @@ export default function AccumulatedChart() {
         <div>
             <div className="   bg-white" style={{ borderRadius: 5 }} >
                 <div>
-                    <div className="text-lg text-titleBorder" style={{ color: "white", fontWeight: 400, background: "#036E9B", position: "relative", }} >
+                    <div className="text-lg text-titleBorder" style={{ color: "white", fontWeight: 400, background: "#036E9B", }} >
 
                         <p className='' >Thống kê lượng tiêu thụ thức ăn theo khoảng thời gian (Tấn) </p>
 
