@@ -288,7 +288,6 @@ export default function ChartBagByTime() {
                                 options={options}
                                 series={[{ name: "450Kg", data: chartLabels }]}
                                 type="bar"
-                                className="responsive-chart"
                                 height={300}
                             />
 
@@ -300,9 +299,9 @@ export default function ChartBagByTime() {
                         } key="2">
 
                             {filteredTableData.length > 0 ? (
-                                <Table className="responsive-chart" dataSource={filteredTableData.length > 0 ? filteredTableData : nameTable} pagination={{ pageSize: 5 }} columns={columns} />
+                                <Table className="" dataSource={filteredTableData.length > 0 ? filteredTableData : nameTable} pagination={{ pageSize: 5 }} columns={columns} />
                             ) : (
-                                <Table className="responsive-chart" dataSource={nameTable} pagination={{ pageSize: 5 }} columns={columns} />
+                                <Table className="" dataSource={nameTable} pagination={{ pageSize: 5 }} columns={columns} />
                             )}
 
                         </TabPane>

@@ -9,6 +9,7 @@ import { customLocale, customYear } from './DatePickerViVn';
 import { RiLineChartLine } from 'react-icons/ri';
 import { HiOutlineDocumentReport } from 'react-icons/hi';
 import { MdOutlineCalculate } from 'react-icons/md';
+import Chart from 'react-apexcharts';
 
 import moment from 'moment';
 import "./ChartTestAo.css"
@@ -17,6 +18,7 @@ import AccumulatedChart from './AccumulatedChart';
 import ChartBagByTime from './ChartBagByTime';
 const dateFormat = 'YYYY/MM/DD';
 const { SubMenu } = Menu;
+
 export default function TestMenu() {
 
     const [loadNameFaming, setLoadNameFarming] = useState([]);// load vùng nuôi
@@ -509,24 +511,11 @@ export default function TestMenu() {
 
 
     ];
+
     const optionsKgBar = { // option chỉnh sửa của loadChart( load thức ăn theo kg, ngày và tháng)
+
         chart: {
-            type: 'bar',
-            zoom: {
-                type: "x",
-                enabled: true,
-            },
-        },
-
-
-        plotOptions: {
-            bar: {
-
-                borderRadius: 2,
-                dataLabels: {
-                    position: "top",
-                },
-            },
+            id: 'chart1',
         },
         xaxis: {
             categories: filterDataKg.map((data) => {
@@ -535,62 +524,6 @@ export default function TestMenu() {
                 return reveredDates;
             }),
         },
-
-        stroke: {
-            show: true,
-            curve: 'smooth',
-            lineCap: 'butt',
-            colors: undefined,
-            width: 1,
-            dashArray: [0, 0, 8]
-        },
-        colors: ['#036E9B'],
-        tooltip: {
-            enabled: true,
-            theme: "dark",
-            x: {
-                show: false,
-                format: "yyyy-MM-dd",
-            },
-        },
-
-        legend: {
-            show: false,
-            showForSingleSeries: true,
-            showForNullSeries: true,
-            showForZeroSeries: false,
-            position: "top",
-            horizontalAlign: "center",
-            floating: true,
-            fontSize: "13px",
-            fontFamily: "Helvetica, Arial",
-            fontWeight: 800,
-            formatter: undefined,
-            inverseOrder: false,
-            width: undefined,
-            height: undefined,
-            tooltipHoverFormatter: undefined,
-            customLegendItems: [],
-            offsetX: 0,
-            offsetY: 0,
-        },
-
-        dataLabels: {
-            enabled: true,
-            formatter: function (val) {
-                return val;
-            },
-            offsetY: -20,
-            style: {
-                fontSize: '12px',
-                colors: ["#FF5252"],
-                fontWeight: 400,
-
-            },
-
-        },
-
-
     };
 
     const optionsKgLine = { // option chỉnh sửa của loadChart( load thức ăn theo kg, ngày và tháng)
@@ -1511,346 +1444,6 @@ export default function TestMenu() {
     //---------------------------------------------------- End Chart load tháng trong năm  -------------------------------------------------------------
 
 
-
-    const renderLoadChartKg = () => {
-        return <div className='bg-white ' style={{ borderRadius: 5 }} >
-            <div className="text-lg text-titleBorder " style={{ color: "white", fontWeight: 400, background: "#036E9B", position: "relative", }} >
-                <p>Biểu đồ lượng tiêu thụ thức ăn (Kg) - {dataFishPondKg.name} </p>
-            </div>
-            <DatePicker.RangePicker
-
-                style={{ position: 'relative', top: 40, zIndex: 9999 }}
-                onChange={handleDateChangeKg}
-                onOk={(dates) => {
-                    setStartDateKg(dates[0]);
-                    setEndDateKg(dates[1]);
-                    setDatePickerValueKg(dates);
-                }}
-                locale={customLocale}
-
-            />
-            <div className=" container flex "   >
-                <Tabs defaultActiveKey="1" style={{ borderRadius: 5, }} onChange={onChange}>
-                    <TabPane tab={
-                        <span className='' >
-                            <BsBarChart size={20} />
-
-                        </span>
-                    } key="1">
-
-                        <div className="chart-res" >
-
-                            <ReactApexChart
-
-                                options={optionsKgBar}
-                                series={[{ name: dataFishPondKg.name, data: filterDataKg.map((item) => item.quantity), strokeWidth: 1 }]}
-                                type="bar"
-                                className="responsive-chart"
-                                height={300}
-
-                            />
-                        </div>
-                    </TabPane>
-
-                    <TabPane tab={
-                        <span>
-                            <RiLineChartLine size={20} />
-                        </span>
-                    } key="2">
-
-                        <div className="chart-res"  >
-                            <ReactApexChart
-
-                                options={optionsKgLine}
-                                series={[{ name: dataFishPondKg.name, data: filterDataKg.map((item) => item.quantity), strokeWidth: 1 }]}
-                                type="area"
-                                className="responsive-chart"
-                                height={300}
-                            />
-                        </div>
-                    </TabPane>
-                    <TabPane tab={
-                        <span>
-                            <AiOutlineTable size={20} />
-                        </span>
-                    } key="3">
-                        <div className="text-lg text-titleBorder" style={{ color: "white", fontWeight: 400, background: "#036E9B", position: "relative", bottom: 120, }} >
-
-                            <p>Lịch sử cho ăn - {dataFishPondKg.name}  </p>
-                        </div>
-                        {filteredTableDataKg.length > 0 ? (
-                            <Table className='responsive-chart bg-blue-500' dataSource={filteredTableDataKg.length > 0 ? filteredTableDataKg : nameTableKg} pagination={{ pageSize: 5 }} style={{}} columns={columns} />
-                        ) : (
-                            <Table className='responsive-chart' dataSource={nameTableKg} pagination={{ pageSize: 5 }} style={{}} columns={columnKg} />
-                        )}
-                    </TabPane>
-
-                </Tabs>
-
-            </div>
-        </div >
-    }
-
-    const renderloadChartBag = () => {
-        return <div className='bg-white ' style={{ borderRadius: 5 }}>
-            <div className="text-lg text-titleBorder" style={{ color: "white", fontWeight: 400, background: "#036E9B", position: "relative", }} >
-
-                <p>Biểu đồ lượng tiêu thụ thức ăn (bao) - {dataFishPondKg.name}  </p>
-            </div>
-            <DatePicker.RangePicker
-                style={{ position: 'relative', top: 40, left: 0, zIndex: 9999 }}
-                onChange={handleDateChange}
-                onOk={(dates) => {
-                    setStartDateBag(dates[0]);
-                    setEndDateBag(dates[1]);
-                    setDatePickerValueBag(dates);
-                }}
-                locale={customLocale}
-            />
-            <div className=" container flex"   >
-                <Tabs defaultActiveKey="1" style={{ borderRadius: 10, }} onChange={onChange}>
-
-
-                    <TabPane tab={
-                        <span>
-                            <BsBarChart size={20} />
-                        </span>
-                    } key="1">
-
-                        <ReactApexChart
-                            options={optionsBagBar}
-                            series={[
-                                { name: "450 Kg", data: filterDatas.map((item) => item["450"]), strokeWidth: 1 },
-                            ]}
-                            type="bar"
-                            className="responsive-chart"
-                            height={300}
-                        />
-                    </TabPane>
-
-                    <TabPane tab={
-                        <span>
-                            <RiLineChartLine size={20} />
-                        </span>
-                    } key="2">
-
-
-                        <ReactApexChart
-                            options={optionsBagLine}
-                            series={[
-                                { name: "450 Kg", data: filterDatas.map((item) => item["450"]), strokeWidth: 1 },
-                            ]}
-                            type="area"
-                            className="responsive-chart"
-                            height={300}
-                        />
-                    </TabPane>
-                    <TabPane tab={
-                        <span>
-                            <AiOutlineTable size={20} />
-                        </span>
-                    } key="3">
-                        <div className="text-lg text-titleBorder" style={{ color: "white", fontWeight: 400, background: "#036E9B", position: "relative", bottom: 120, }} >
-
-                            <p>Lịch sử cho ăn - {dataFishPondKg.name}  </p>
-                        </div>
-                        {filteredTableDataBag.length > 0 ? (
-                            <Table className='responsive-chart' dataSource={filteredTableDataBag.length > 0 ? filteredTableDataBag : nameTableBag} pagination={{ pageSize: 5 }} style={{}} columns={columns} />
-                        ) : (
-                            <Table className='responsive-chart' dataSource={nameTableBag} style={{}} columns={columns} />
-                        )}
-                    </TabPane>
-
-                </Tabs>
-
-            </div>
-
-        </div>
-    }
-
-    const renderLoadChartYear = () => {
-        return <div className=''  >
-            <div className='bg-white' style={{ borderRadius: 5 }}>
-                <div className="text-lg text-titleBorder" style={{ color: "white", fontWeight: 400, background: "#036E9B", }} >
-
-                    <p>Biểu đồ lượng tiêu thụ thức ăn theo tháng năm {selectedYear} - {dataFishPondKg.name} </p>
-                </div>
-                <DatePicker
-                    style={{ position: 'relative', top: 40, zIndex: 9999 }}
-                    onChange={handleDatePickerChange}
-                    picker="year"
-                    locale={customYear}
-                    allowClear={true}
-                />
-                <div className=' container bg-white  ' style={{ borderRadius: 5 }}>
-                    <Tabs defaultActiveKey="1" className="flex  bg-white" style={{ borderRadius: 10, }} onChange={onChange}>
-
-
-                        <TabPane className='' tab={
-                            <span className='' >
-                                <BsBarChart size={20} />
-
-                            </span>
-                        } key="1">
-
-                            <ReactApexChart
-                                options={optionsYearBar}
-                                series={series}
-                                type="bar"
-                                className="responsive-chart"
-                                height={300}
-                            />
-                        </TabPane>
-
-                        <TabPane tab={
-                            <span>
-                                <RiLineChartLine size={20} />
-
-                            </span>
-                        } key="2">
-
-                            <ReactApexChart
-                                options={optionsYearLine}
-                                series={series}
-                                type="area"
-                                className="responsive-chart"
-                                height={300}
-                            />
-                        </TabPane>
-
-
-                    </Tabs>
-                </div>
-            </div>
-        </div>
-    }
-
-    const renderLoadChartQuanTrac = () => {
-        return <div className='bg-white responsive-MonByYear' style={{ borderRadius: 5, }}>
-            <div className="text-lg text-titleBorder" style={{ color: "white", fontWeight: 400, }} >
-
-                <p>Biểu đồ quan trắc {nameValue.name} - {dataFishPondKg.name} </p>
-            </div>
-            <div className="flex" style={{ marginLeft: 400, position: "relative", top: 40, zIndex: 999 }}>
-                <Select
-                    defaultValue="Chọn thông số"
-                    style={{ width: 150 }}
-                    onChange={handleChange}
-                >
-                    <Select.Option value={1}>pH</Select.Option>
-                    <Select.Option value={2}>DO</Select.Option>
-                    <Select.Option value={3}>Nhiệt Độ</Select.Option>
-                </Select>
-                <DatePicker.RangePicker
-
-                    style={{ paddingRight: 10, }}
-                    onChange={handleDateChangeMon}
-                    onOk={(dates) => {
-                        setStartDateMon(dates[0]);
-                        setEndDateMon(dates[1]);
-                        setDatePickerValueMon(dates);
-                    }}
-                    locale={customLocale}
-                />
-            </div>
-
-            <div className=" flex"  >
-
-                <Tabs defaultActiveKey="1" style={{ borderRadius: 10 }} onChange={onChangeQuanTrac}>
-                    <TabPane tab={
-                        <span >
-                            <RiLineChartLine size={20} />
-
-                        </span>
-                    } key="1">
-
-                        <ReactApexChart
-                            options={optionsMon}
-                            series={optionsMon.series}
-                            type="line"
-                            className="responsive-YearByPond"
-                            height={450}
-                        />
-                    </TabPane>
-
-                    <TabPane tab={
-                        <span>
-                            <AiOutlineTable size={24} />
-                        </span>
-                    } key="2">
-                        <div className="text-lg" style={{ color: "white", fontWeight: 400, background: "#036E9B", position: "relative", bottom: 125, borderRadius: 5 }} >
-
-                            <p>Lịch sử thông số đo {nameValue.name} - {dataFishPondKg.name} </p>
-                        </div>
-                        {filteredTableDataMon.length > 0 ? (
-                            <Table className='responsive-YearByPond' dataSource={filteredTableDataMon.length > 0 ? filteredTableDataMon : Value} pagination={{ pageSize: 10 }} columns={columnsMon} />
-                        ) : (
-                            <Table className='responsive-YearByPond' dataSource={Value} pagination={{ pageSize: 10 }} columns={columnsMon} />
-                        )}
-                    </TabPane>
-                </Tabs>
-            </div>
-
-        </div >
-
-    }
-
-    const renderLoadChartMonthByYear = () => {
-        return <div className="bg-white responsive-MonByYear " style={{ borderRadius: 5 }}>
-            <div className="text-lg  text-titleBorder " style={{ color: " white", fontWeight: 400, }} >
-
-                <p>Biểu đồ lượng tiêu thụ thức ăn tháng {selectedMonth} năm {selectedMonthByYear} - {dataFishPondKg.name} (Kg) </p>
-
-            </div>
-            <DatePicker
-                style={{ position: 'relative', top: 40, zIndex: 9999 }}
-                onChange={handleDateChangeMonthByYear}
-                picker="month"
-            />
-            <Tabs defaultActiveKey="1" className="bg-white" style={{ borderRadius: 10 }} onChange={onChangeMonthByYear}>
-
-                <TabPane
-                    tab={
-                        <span>
-                            <BsBarChart size={20} />
-
-                        </span>
-                    }
-                    key="1"
-                >
-
-                    <ReactApexChart
-                        options={optionsMonthByYearBar}
-                        series={seriesMonthByYear}
-                        type="bar"
-                        className="responsive-YearByPond"
-                        height={300} />
-                </TabPane>
-
-                <TabPane
-                    tab={
-                        <span>
-                            <RiLineChartLine size={20} />
-
-                        </span>
-                    }
-                    key="2"
-                >
-
-                    <ReactApexChart
-                        options={optionsMonthByYearLine}
-                        series={seriesMonthByYear}
-                        type="area"
-                        className="responsive-YearByPond"
-
-
-                        height={300}
-                    />
-                </TabPane>
-            </Tabs>
-        </div >
-    }
-
     function onChangeTabChart(key) {
         console.log('key: ', key);
     }
@@ -1859,13 +1452,13 @@ export default function TestMenu() {
         <div className='  bg-gray-200 ' >
 
             <div className='bg-white bg-menu-tag' style={{ position: "relative", height: 50, bottom: 4 }}> </div>
-            <div className='flex  ' >
-                <div className='menu-wrapper bg-white' style={{ width: 150, position: 'relative', bottom: 50 }}  >
+            <div style={{ display: 'flex' }} >
+                <div className='menu-wrapper bg-white' style={{ width: '10%', position: 'relative', bottom: 50 }}  >
                     <Menu
-                        className=' bg-white' style={{ height: '100%', borderRadius: 5 }}
+                        className=' bg-white ' style={{ height: '100%', borderRadius: 5, fontSize: 12, fontWeight: 700 }}
                         mode="inline">
                         {loadNameFaming.map((item) => (
-                            <SubMenu style={{ fontWeight: 700 }} key={item.id} title={item.name}>
+                            <SubMenu style={{}} key={item.id} title={item.name}>
                                 {filteredData
                                     .filter((pond) => pond.farmingArea.id === item.id)
                                     .map((pond) => (
@@ -1877,82 +1470,345 @@ export default function TestMenu() {
                         ))}
                     </Menu>
                 </div>
-
-                <Tabs className='' style={{ position: 'relative', bottom: 50 }} onChange={onChangeTabChart} >
-                    <TabPane className='bg-white' key="1" tab={<span className='flex' style={{ fontWeight: 400 }}> <HiOutlineDocumentReport size={24} /> <p className='px-2'>Báo cáo thức ăn </p> </span>} >
-                        <div className='bg-gray-200 px-2'>
-                            <div className=' ' style={{ position: 'relative', }} >
-                                <div className='flex ' >
-                                    <div className=' px-2' style={{ borderRadius: 5 }}  >
-                                        {renderLoadChartKg()}
-
+                <div style={{ width: '88%', marginLeft: 15 }}>
+                    <Tabs style={{ position: 'relative', bottom: 50 }} onChange={onChangeTabChart} >
+                        <TabPane key="1" tab={<span className='flex' style={{ fontWeight: 400 }}> <HiOutlineDocumentReport size={24} /> <p className='px-2'>Báo cáo thức ăn </p> </span>} >
+                            <div style={{ display: 'flex', }}>
+                                <div className='bg-white' style={{ borderRadius: 5, width: '50%', }}>
+                                    <div className="text-lg text-titleBorder " style={{ color: "white", fontWeight: 400, background: "#036E9B", }} >
+                                        <p>Biểu đồ lượng tiêu thụ thức ăn (Kg) - {dataFishPondKg.name} </p>
                                     </div>
-                                    <div className=' px-2' style={{ borderRadius: 5 }}  >
-                                        {renderloadChartBag()}
+                                    <div>
+                                        <DatePicker.RangePicker
+                                            style={{ position: 'relative', top: 10, zIndex: 9999 }}
+                                            onChange={handleDateChangeKg}
+                                            onOk={(dates) => {
+                                                setStartDateKg(dates[0]);
+                                                setEndDateKg(dates[1]);
+                                                setDatePickerValueKg(dates);
+                                            }}
+                                            locale={customLocale}
 
+                                        />
                                     </div>
+                                    <Tabs defaultActiveKey="1" onChange={onChange}>
+                                        <TabPane tab={
+                                            <span className='' >
+                                                <BsBarChart size={20} />
+
+                                            </span>
+                                        } key="1">
+
+                                            <div className="" >
+
+                                                <ReactApexChart
+                                                    options={optionsKgBar}
+                                                    series={[{ name: dataFishPondKg.name, data: filterDataKg.map((item) => item.quantity), strokeWidth: 1 }]}
+                                                    type="bar"
+                                                    height={300}
+
+
+                                                />
+                                            </div>
+                                        </TabPane>
+
+                                        <TabPane tab={
+                                            <span>
+                                                <RiLineChartLine size={20} />
+                                            </span>
+                                        } key="2">
+
+                                            <div className=""  >
+                                                <ReactApexChart
+
+                                                    options={optionsKgLine}
+                                                    series={[{ name: dataFishPondKg.name, data: filterDataKg.map((item) => item.quantity), strokeWidth: 1 }]}
+                                                    type="area"
+                                                    height={300}
+
+                                                />
+                                            </div>
+                                        </TabPane>
+                                        <TabPane tab={
+                                            <span>
+                                                <AiOutlineTable size={20} />
+                                            </span>
+                                        } key="3">
+
+                                            {filteredTableDataKg.length > 0 ? (
+                                                <Table className=' bg-blue-500' dataSource={filteredTableDataKg.length > 0 ? filteredTableDataKg : nameTableKg} pagination={{ pageSize: 5 }} style={{}} columns={columns} />
+                                            ) : (
+                                                <Table className='' dataSource={nameTableKg} pagination={{ pageSize: 5 }} style={{}} columns={columnKg} />
+                                            )}
+                                        </TabPane>
+
+                                    </Tabs>
                                 </div>
-                                <div>
-                                    <div className='px-2 py-2 '>
-                                        {renderLoadChartMonthByYear()}
-
+                                <div className='bg-gray-200' style={{ width: 16 }} ></div>
+                                <div className='bg-white' style={{ borderRadius: 5, width: '50%', }}>
+                                    <div className="text-lg text-titleBorder " style={{ color: "white", fontWeight: 400, background: "#036E9B", }} >
+                                        <p>Biểu đồ lượng tiêu thụ thức ăn (Bao) - {dataFishPondKg.name} </p>
                                     </div>
-                                </div>
+                                    <DatePicker.RangePicker
+                                        style={{ position: 'relative', top: 10, left: 0, zIndex: 9999 }}
+                                        onChange={handleDateChange}
+                                        onOk={(dates) => {
+                                            setStartDateBag(dates[0]);
+                                            setEndDateBag(dates[1]);
+                                            setDatePickerValueBag(dates);
+                                        }}
+                                        locale={customLocale}
+                                    />
+                                    <Tabs defaultActiveKey="1" style={{}} onChange={onChange}>
+                                        <TabPane tab={
+                                            <span>
+                                                <BsBarChart size={20} />
+                                            </span>
+                                        } key="1">
+                                            <Chart
+                                                options={optionsBagBar}
+                                                series={[
+                                                    { name: "450 Kg", data: filterDatas.map((item) => item["450"]), strokeWidth: 1 },
+                                                ]}
+                                                type="bar"
+                                                height={300}
+                                            />
+                                        </TabPane>
 
+                                        <TabPane tab={
+                                            <span>
+                                                <RiLineChartLine size={20} />
+                                            </span>
+                                        } key="2">
+
+
+                                            <ReactApexChart
+                                                options={optionsBagLine}
+                                                series={[
+                                                    { name: "450 Kg", data: filterDatas.map((item) => item["450"]), strokeWidth: 1 },
+                                                ]}
+                                                type="area"
+                                                height={300}
+
+
+                                            />
+                                        </TabPane>
+                                        <TabPane tab={
+                                            <span>
+                                                <AiOutlineTable size={20} />
+                                            </span>
+                                        } key="3">
+
+                                            {filteredTableDataBag.length > 0 ? (
+                                                <Table className='' dataSource={filteredTableDataBag.length > 0 ? filteredTableDataBag : nameTableBag} pagination={{ pageSize: 5 }} style={{}} columns={columns} />
+                                            ) : (
+                                                <Table className='' dataSource={nameTableBag} style={{}} columns={columns} />
+                                            )}
+                                        </TabPane>
+
+                                    </Tabs>
+                                </div>
                             </div>
-                        </div>
 
-                    </TabPane>
-
-
-                    <TabPane key='2' tab={<span className='flex' style={{ fontWeight: 400 }}> <MdOutlineCalculate size={24} /> <p className='px-2'>Lũy kế thức ăn</p> </span>} >
-                        <div className='px-2'>
+                            <div className='py-2'></div>
 
 
-                            <div className='flex ' >
-                                <div className=' px-2' style={{ borderRadius: 5 }}  >
-                                    {renderLoadChartYear()}
+                            <div className='bg-white ' style={{ width: '100%', borderRadius: 5 }}>
+                                <div className="text-lg text-titleBorder " style={{ color: " white", fontWeight: 400, background: "#036E9B", }} >
+
+                                    <p>Biểu đồ lượng tiêu thụ thức ăn tháng {selectedMonth} năm {selectedMonthByYear} - {dataFishPondKg.name} (Kg) </p>
 
                                 </div>
-                                <div className=' px-2' style={{ borderRadius: 5 }}  >
+                                <DatePicker
+                                    style={{ position: 'relative', top: 10, zIndex: 9999 }}
+                                    onChange={handleDateChangeMonthByYear}
+                                    picker="month"
+                                />
+                                <Tabs defaultActiveKey="1" className="bg-white" style={{ borderRadius: 10 }} onChange={onChangeMonthByYear}>
+
+                                    <TabPane
+                                        tab={
+                                            <span>
+                                                <BsBarChart size={20} />
+
+                                            </span>
+                                        }
+                                        key="1"
+                                    >
+
+                                        <ReactApexChart
+                                            options={optionsMonthByYearBar}
+                                            series={seriesMonthByYear}
+                                            type="bar"
+                                            height={300} />
+                                    </TabPane>
+
+                                    <TabPane
+                                        tab={
+                                            <span>
+                                                <RiLineChartLine size={20} />
+
+                                            </span>
+                                        }
+                                        key="2"
+                                    >
+
+                                        <ReactApexChart
+                                            options={optionsMonthByYearLine}
+                                            series={seriesMonthByYear}
+                                            type="area"
+                                            height={300}
+                                        />
+                                    </TabPane>
+                                </Tabs>
+                            </div>
+                        </TabPane>
+
+
+                        <TabPane key='2' tab={<span className='flex' style={{ fontWeight: 400 }}> <MdOutlineCalculate size={24} /> <p className='px-2'>Lũy kế thức ăn</p> </span>} >
+                            <div className='flex'>
+                                <div style={{ width: '50%' }}>
+                                    <div className='bg-white' style={{ borderRadius: 5 }}>
+                                        <div className="text-lg text-titleBorder" style={{ color: "white", fontWeight: 400, background: "#036E9B", }} >
+
+                                            <p>Biểu đồ lượng tiêu thụ thức ăn theo tháng năm {selectedYear} - {dataFishPondKg.name} </p>
+                                        </div>
+                                        <DatePicker
+                                            style={{ position: 'relative', top: 40, zIndex: 9999 }}
+                                            onChange={handleDatePickerChange}
+                                            picker="year"
+                                            locale={customYear}
+                                            allowClear={true}
+                                        />
+                                        <div className=' container bg-white  ' style={{ borderRadius: 5 }}>
+                                            <Tabs defaultActiveKey="1" className="flex  bg-white" style={{ borderRadius: 10, }} onChange={onChange}>
+
+
+                                                <TabPane className='' tab={
+                                                    <span className='' >
+                                                        <BsBarChart size={20} />
+
+                                                    </span>
+                                                } key="1">
+
+                                                    <ReactApexChart
+                                                        options={optionsYearBar}
+                                                        series={series}
+                                                        type="bar"
+                                                        height={300}
+                                                    />
+                                                </TabPane>
+
+                                                <TabPane tab={
+                                                    <span>
+                                                        <RiLineChartLine size={20} />
+
+                                                    </span>
+                                                } key="2">
+
+                                                    <ReactApexChart
+                                                        options={optionsYearLine}
+                                                        series={series}
+                                                        type="area"
+                                                        height={300}
+                                                    />
+                                                </TabPane>
+
+
+                                            </Tabs>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className='bg-gray-200' style={{ width: 16 }} ></div>
+                                <div style={{ width: '50%' }}>
                                     <ChartBagByTime />
                                 </div>
                             </div>
-
-                            <div className='flex py-2'>
-                                <div className=' px-2' style={{ borderRadius: 5 }}  >
+                            <div className='flex'>
+                                <div style={{ width: '50%' }} >
                                     <YearByPond />
 
                                 </div>
-                                <div className=' px-2' style={{ borderRadius: 5 }}  >
+                                <div className='bg-gray-200' style={{ width: 16 }} ></div>
+
+                                <div style={{ width: '50%' }} >
                                     <AccumulatedChart />
 
 
                                 </div>
                             </div>
-                        </div>
+                        </TabPane>
+                        <TabPane key="3" tab={<span className='flex' style={{ fontWeight: 400, }}> <AiOutlineDashboard size={24} /> <p className='px-2'>Quan trắc</p></span>} >
+                            <div className='bg-white' style={{ width: '100%' }}>
+                                <div className="text-lg text-titleBorder" style={{ color: "white", fontWeight: 400, }} >
 
-                    </TabPane>
-                    <TabPane key="3" tab={<span className='flex' style={{ fontWeight: 400, }}> <AiOutlineDashboard size={24} /> <p className='px-2'>Quan trắc</p></span>} >
-                        <div className='bg-gray-200 px-2'>
+                                    <p>Biểu đồ quan trắc {nameValue.name} - {dataFishPondKg.name} </p>
+                                </div>
+                                <div className="flex" style={{ marginLeft: 400, position: "relative", top: 40, zIndex: 999 }}>
+                                    <Select
+                                        defaultValue="Chọn thông số"
+                                        style={{ width: 150 }}
+                                        onChange={handleChange}
+                                    >
+                                        <Select.Option value={1}>pH</Select.Option>
+                                        <Select.Option value={2}>DO</Select.Option>
+                                        <Select.Option value={3}>Nhiệt Độ</Select.Option>
+                                    </Select>
+                                    <DatePicker.RangePicker
 
-                            <div className='px-2 ' style={{}}  >
-                                {renderLoadChartQuanTrac()}
+                                        style={{ paddingRight: 10, }}
+                                        onChange={handleDateChangeMon}
+                                        onOk={(dates) => {
+                                            setStartDateMon(dates[0]);
+                                            setEndDateMon(dates[1]);
+                                            setDatePickerValueMon(dates);
+                                        }}
+                                        locale={customLocale}
+                                    />
+                                </div>
 
+
+                                <Tabs defaultActiveKey="1" style={{ borderRadius: 10 }} onChange={onChangeQuanTrac}>
+                                    <TabPane tab={
+                                        <span >
+                                            <RiLineChartLine size={20} />
+
+                                        </span>
+                                    } key="1">
+
+                                        <ReactApexChart
+                                            options={optionsMon}
+                                            series={optionsMon.series}
+                                            type="line"
+                                            height={450}
+                                        />
+                                    </TabPane>
+
+                                    <TabPane tab={
+                                        <span>
+                                            <AiOutlineTable size={24} />
+                                        </span>
+                                    } key="2">
+                                        <div className="text-lg" style={{ color: "white", fontWeight: 400, background: "#036E9B", position: "relative", bottom: 125, borderRadius: 5 }} >
+
+                                            <p>Lịch sử thông số đo {nameValue.name} - {dataFishPondKg.name} </p>
+                                        </div>
+                                        {filteredTableDataMon.length > 0 ? (
+                                            <Table className='' dataSource={filteredTableDataMon.length > 0 ? filteredTableDataMon : Value} pagination={{ pageSize: 10 }} columns={columnsMon} />
+                                        ) : (
+                                            <Table className='' dataSource={Value} pagination={{ pageSize: 10 }} columns={columnsMon} />
+                                        )}
+                                    </TabPane>
+                                </Tabs>
                             </div>
-
-
-
-                        </div>
-
-                    </TabPane>
+                        </TabPane>
 
 
 
 
 
-                </Tabs>
-
+                    </Tabs>
+                </div>
             </div>
 
         </div >

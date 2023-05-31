@@ -294,7 +294,6 @@ export default function AccumulatedChart() {
                                 options={options}
                                 series={[{ data: chartData }]}
                                 type="bar"
-                                className="responsive-chart"
                                 height={300}
                             />
 
@@ -307,9 +306,9 @@ export default function AccumulatedChart() {
                         } key="3">
 
                             {filteredTableData.length > 0 ? (
-                                <Table className="responsive-chart" dataSource={filteredTableData.length > 0 ? filteredTableData : nameTable} pagination={{ pageSize: 5 }} columns={columns} />
+                                <Table dataSource={filteredTableData.length > 0 ? filteredTableData : nameTable} pagination={{ pageSize: 5 }} columns={columns} />
                             ) : (
-                                <Table className="responsive-chart" dataSource={nameTable} pagination={{ pageSize: 5 }} columns={columns} />
+                                <Table dataSource={nameTable} pagination={{ pageSize: 5 }} columns={columns} />
                             )}
 
                         </TabPane>

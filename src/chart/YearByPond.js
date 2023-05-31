@@ -223,7 +223,6 @@ export default function YearByPond() {
                                 series={[{ data: chartData }]}
                                 type="bar"
                                 height={300}
-                                className="responsive-chart"
                             />
                         </TabPane>
                     </Tabs>

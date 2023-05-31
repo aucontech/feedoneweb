@@ -10,6 +10,7 @@ import UpdateFeed from '../../chart/UpdateFeed';
 import QuanLyVungNuoiAntd from '../../VungNuoi/QuanLyVungNuoiAntd';
 import TestRoles from '../../chart/TestRoles';
 import AccumulatedChart from '../../chart/AccumulatedChart';
+import TestChart from '../../TestChart/TestChart';
 
 export default function HomePage() {
     const [collapsed, setCollapsed] = useState(false);
@@ -32,6 +33,7 @@ export default function HomePage() {
                 {/* <QuanLyVungNuoiAntd /> */}
                 {/* <TestRoles /> */}
                 {/* <AccumulatedChart /> */}
+                {/* <TestChart /> */}
             </div>
         </div>
     )
