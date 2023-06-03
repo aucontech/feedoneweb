@@ -35,7 +35,6 @@ export default function Testproject() {
         fetchData();
     }, [isUpdating]);
 
-
     return (
         <div>
             <Modal

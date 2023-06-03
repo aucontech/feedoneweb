@@ -16,7 +16,12 @@ import "./ChartTestAo.css"
 import YearByPond from './YearByPond';
 import AccumulatedChart from './AccumulatedChart';
 import ChartBagByTime from './ChartBagByTime';
-const dateFormat = 'YYYY/MM/DD';
+import ChartPump from './ChartPump/ChartPump';
+import ChartPumpTime from './ChartPump/ChartPumpTime';
+import ChartPumpYear from './ChartPump/ChartPumpYear';
+import Testproject from '../VungNuoi/Testproject';
+import TestObj from './TestObj';
+import ChartTestAo from './ChartTestAo';
 const { SubMenu } = Menu;
 
 export default function TestMenu() {
@@ -1898,6 +1903,36 @@ export default function TestMenu() {
                         </TabPane>
 
 
+                        <TabPane key='4' tab={<span className='flex' style={{ fontWeight: 400 }}> <MdOutlineCalculate size={24} /> <p className='px-2'>Trạm Bơm</p> </span>} >
+
+                            <div className='flex'>
+                                <div style={{ width: '50%' }} >
+                                    <ChartPump />
+                                </div>
+                                <div className='bg-gray-200' style={{ width: 16 }} ></div>
+
+                                <div style={{ width: '50%' }} >
+                                    <ChartPumpTime />
+
+                                </div>
+                            </div>
+
+                            <div className='py-2'></div>
+
+                            <div className='flex'>
+                                <div style={{ width: '50%' }} >
+                                    <ChartPumpYear />
+                                </div>
+                                <div className='bg-gray-200' style={{ width: 16 }} ></div>
+
+                                <div style={{ width: '50%' }} >
+                                </div>
+                            </div>
+
+                            <div>
+                                {/* <TestObj /> */}
+                            </div>
+                        </TabPane>
 
 
 

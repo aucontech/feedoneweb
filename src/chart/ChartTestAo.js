@@ -196,6 +196,8 @@ export default function ChartTestAo() {
     const endDateChartPond = currentDates.toISOString("en-US")
 
     const loadChart = async (id) => {
+
+        if (!startDate || !endDate || !id) return
         const params = {
             data: {
                 startdate: "2023-01-01",

@@ -38,7 +38,9 @@ export const ParamsOfAccumulated = { // Params của API lũy kế lũy kế s�
     }
 }
 
-export const ApiChartPump = "/getpumpstatistics"
+export const ApiChartPump = "/getpumpstatistics" // API chart giờ bơm và số lần bơm
+
+export const ApiChartPumpYear = "/getpumpstatisticsbyyear"  // API chart giờ bơm và số lần bơm theo năm 
 
 export const updateListFeed = "/updatefeed"
 

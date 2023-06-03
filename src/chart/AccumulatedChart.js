@@ -274,6 +274,7 @@ export default function AccumulatedChart() {
                                 </Select.Option>
                             ))}
                         </Select>
+
                         <DatePicker.RangePicker
                             value={[selectStartDate, selectEndDate]}
                             onChange={(dates) => {
