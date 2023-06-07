@@ -38,6 +38,12 @@ export const ParamsOfAccumulated = { // Params của API lũy kế lũy kế s�
     }
 }
 
+export const ApiScaleYear = "/getharvestbymonthinyear"
+
+export const ApiScaleByDay = "/getharvestbydate" // Api chart cân theo ngày 
+
+export const ApiUpdateFeed = "/updatefeed"
+
 export const ApiChartPump = "/getpumpstatistics" // API chart giờ bơm và số lần bơm
 
 export const ApiChartPumpYear = "/getpumpstatisticsbyyear"  // API chart giờ bơm và số lần bơm theo năm 

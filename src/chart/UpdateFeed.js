@@ -94,10 +94,6 @@ export default function UpdateFeed() {
         }
     };
 
-    // const updateFeed = () => {
-    //     if (updatedData)
-    // }
-
 
     const changeValueCallApiNumber3 = (value) => {
         if (Array.isArray(value)) {

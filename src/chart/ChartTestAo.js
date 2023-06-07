@@ -274,8 +274,6 @@ export default function ChartTestAo() {
                             </SubMenu>
                         ))}
                     </Menu>
-
-
                 </div>
             </div>
         );

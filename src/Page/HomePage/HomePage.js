@@ -12,13 +12,10 @@ import TestRoles from '../../chart/TestRoles';
 import AccumulatedChart from '../../chart/AccumulatedChart';
 import TestChart from '../../TestChart/TestChart';
 import ChartPump from '../../chart/ChartPump/ChartPump';
+import TestObj from '../../chart/TestObj';
 
 export default function HomePage() {
-    const [collapsed, setCollapsed] = useState(false);
-    const [content, setContent] = useState(null);
-    const toggleCollapsed = () => {
-        setCollapsed(!collapsed);
-    };
+
 
     return (
         <div>
@@ -35,6 +32,7 @@ export default function HomePage() {
                 {/* <TestRoles /> */}
                 {/* <AccumulatedChart /> */}
                 {/* <TestChart /> */}
+                {/* <TestObj /> */}
             </div>
         </div>
     )
