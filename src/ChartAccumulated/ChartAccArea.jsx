@@ -6,10 +6,10 @@ import TabPane from 'antd/es/tabs/TabPane';
 import { FcPieChart } from "react-icons/fc"
 import { AiOutlineTable } from "react-icons/ai";
 import moment from 'moment';
-import { customLocale } from './DatePickerViVn';
+import { customLocale } from '../chart/DatePickerViVn';
 import { BsBarChart } from 'react-icons/bs';
 
-export default function AccumulatedChart() {
+export default function ChartAccArea() {
     const [loadNameFaming, setLoadNameFarming] = useState([]);
     const [pondData, setPondData] = useState([]);
 
@@ -22,9 +22,11 @@ export default function AccumulatedChart() {
     const endDateChartPond = currentDates.toISOString("en-US")
 
     const [bagData, setBagData] = useState([])
+    console.log('bagData: ', bagData);
 
     const [selectStartDate, setSelectStartDate] = useState();
     const [selectEndDate, setSelectEndDate] = useState();
+
     useEffect(
         () => {
             const fetchData = async () => {
@@ -49,8 +51,6 @@ export default function AccumulatedChart() {
     useEffect(() => {
         fetchPond()
     }, [selectEndDate, selectStartDate, loadNameFaming])
-
-
 
 
     const fetchPond = async () => {
@@ -82,12 +82,6 @@ export default function AccumulatedChart() {
             console.log("err: ", err);
         }
     };
-
-
-
-
-
-
 
 
     useEffect(() => {
@@ -146,12 +140,12 @@ export default function AccumulatedChart() {
     ];
 
     const chartLabels = filteredData.map((item) => item.mapCountFeed["450"])
-    const chartData = filteredData.map((item) => item.sumMass / 1000)
     const chartnameData = filteredData.map((item) => item.fishPond.name)
 
 
 
     const options = {
+
         chart: {
             type: 'bar',
             zoom: {
@@ -192,7 +186,7 @@ export default function AccumulatedChart() {
         },
 
         legend: {
-            show: false,
+            show: true,
             showForSingleSeries: true,
             showForNullSeries: true,
             showForZeroSeries: false,
@@ -240,26 +234,20 @@ export default function AccumulatedChart() {
                     opacity: 1,
                 },
             },
-
-
         },
-
-
-    }
-    function onChange(key) {
-        console.log(key);
     }
 
     return (
         <div>
-            <div className="   bg-white" style={{ borderRadius: 5 }} >
-                <div>
-                    <div className="text-lg text-titleBorder" style={{ color: "white", fontWeight: 400, background: "#036E9B", }} >
+            <div className='flex py-3'>
+                <div style={{ width: '1%' }} ></div>
 
-                        <p className='' >Thống kê lượng tiêu thụ thức ăn theo khoảng thời gian (Tấn) </p>
+                <div className="   bg-white" style={{ borderRadius: 5, width: '98%' }} >
 
+                    <div className="text-lg  text-titleBorder " style={{ color: " white", fontWeight: 400, background: "#036E9B", position: "relative", }} >
+                        <p className='' >Thống kê lượng tiêu thụ thức ăn theo khoảng thời gian (Bao) </p>
                     </div>
-                    <div className='flex' style={{ position: 'relative', top: 40, zIndex: 9999, width: 450, left: 150 }}>
+                    <div className='flex py-2 px-2' >
 
                         <Select
                             value={selectedFarmingAreaId}
@@ -273,50 +261,46 @@ export default function AccumulatedChart() {
                                 </Select.Option>
                             ))}
                         </Select>
-
-                        <DatePicker.RangePicker
-                            value={[selectStartDate, selectEndDate]}
-                            onChange={(dates) => {
-                                setSelectStartDate(dates[0]);
-                                setSelectEndDate(dates[1]);
-                            }}
-                            locale={customLocale}
-                        />
-                    </div>
-                    <Tabs defaultActiveKey='1' onChange={onChange}  >
-                        <TabPane key="1" tab={
-                            <span>
-                                <BsBarChart size={20} />
-                            </span>} >
-
-                            <ReactApexChart
-
-                                options={options}
-                                series={[{ data: chartData }]}
-                                type="bar"
-                                height={300}
+                        <div className='px-2'>
+                            <DatePicker.RangePicker
+                                value={[selectStartDate, selectEndDate]}
+                                onChange={(dates) => {
+                                    setSelectStartDate(dates[0]);
+                                    setSelectEndDate(dates[1]);
+                                }}
+                                locale={customLocale}
                             />
+                        </div>
+                    </div>
 
-                        </TabPane>
-
-                        <TabPane tab={
-                            <span>
-                                <AiOutlineTable size={20} />
-                            </span>
-                        } key="3">
-
-                            {filteredTableData.length > 0 ? (
-                                <Table dataSource={filteredTableData.length > 0 ? filteredTableData : nameTable} pagination={{ pageSize: 5 }} columns={columns} />
-                            ) : (
-                                <Table dataSource={nameTable} pagination={{ pageSize: 5 }} columns={columns} />
-                            )}
-
-                        </TabPane>
-                    </Tabs>
+                    <ReactApexChart
+                        options={options}
+                        series={[{ name: "450Kg", data: chartLabels }]}
+                        type="bar"
+                        height={400}
+                    />
 
                 </div>
+                <div style={{ width: '1%' }} ></div>
 
+            </div >
+            <div>
+                <div className='flex'>
+                    <div style={{ width: '1%' }} ></div>
+
+                    <div style={{ width: '98%' }}>
+                        <div className="text-lg  text-titleBorder " style={{ color: " white", fontWeight: 400, background: "#036E9B", position: "relative", }} >
+
+
+                            <p className='' >Lịch sử lượng tiêu thụ thức ăn theo khoảng thời gian (bao) </p>
+
+                        </div>
+                        <Table className="" dataSource={nameTable} pagination={{ pageSize: 10 }} columns={columns} />
+                    </div>
+                    <div style={{ width: '1%' }} ></div>
+
+                </div>
             </div>
-        </div >
+        </div>
     )
 }

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { DatePicker, Menu, Select, Table, Tabs } from 'antd';
+import { Button, DatePicker, Menu, Select, Table, Tabs } from 'antd';
 import { ApiFeedByDate, ApiQuanTrac, ApiScaleByDay, ApiScaleYear, ContentType, foodBagByDate, getSumByDay, getSumByMonth, https, listFarmingArea, loadFishPond, loadFishPondData, startAndlimit } from '../Service/ConFigURL';
 import ReactApexChart from 'react-apexcharts';
 import TabPane from 'antd/es/tabs/TabPane';
@@ -21,6 +21,7 @@ import ChartBagByTime from './ChartBagByTime';
 import ChartPump from './ChartPump/ChartPump';
 import ChartPumpTime from './ChartPump/ChartPumpTime';
 import ChartPumpYear from './ChartPump/ChartPumpYear';
+import ChartTestDelete from '../ChartReport/ChartTestDelete';
 const { SubMenu } = Menu;
 
 export default function TestMenu() {
@@ -118,17 +119,18 @@ export default function TestMenu() {
     const [endDateScale, setEndDateScale] = useState(null);
     const [dataFishPondScale, setDataFishPondScale] = useState([]);
     const [datePickerValueScale, setDatePickerValueScale] = useState(null);
-    const [nameTableScale, setNameTableScale] = useState([]);
+    const [nameTableScale, setNameTableScale] = useState(null);
     const [filteredTableDataScale, setFilteredTableDataScale] = useState([]);
+    const [isUpdating, setIsUpdating] = useState(false);
+    const [deleteScaleKg, setDeleteScalekg] = useState([])
 
     //---------------------------------------------- End useState Chart cân theo ngày ----------------------------------------------------------
 
     //---------------------------------------------- Start useState Chart tháng trong năm ----------------------------------------------------------
-    const [seriesScale, setSeriesScale] = useState([]);
-    const [selectedYearScale, setSelectedYearScale] = useState(moment().year());
-    console.log('selectedYearScale: ', selectedYearScale);
-    const [aoIdScaleYear, setAoIdScaleYear] = useState('')
 
+    const [selectedYearScale, setSelectedYearScale] = useState(moment().year());
+    const [loadScaleYear, setLoadScaleYear] = useState([]);
+    const [selectIdScaleYear, setSelectIdScaleYear] = useState()
     //---------------------------------------------- End useState Chart tháng trong năm ----------------------------------------------------------
 
 
@@ -179,8 +181,7 @@ export default function TestMenu() {
         setAoID(value)
         setAoIDMonthByYear(Array.isArray(value) ? value[0] : value);
         setAoIdYear(Array.isArray(value) ? value[0] : value)
-
-        setAoIdScaleYear(Array.isArray(value) ? value[0] : value)
+        setSelectIdScaleYear(Array.isArray(value) ? value[0] : value)
 
         if (Array.isArray(value)) {
             loadChartScale(value[0])
@@ -750,7 +751,7 @@ export default function TestMenu() {
     const loadChartQuanTrac = async (id, value) => {
         const params = {
             "data": {
-                "starttime": "2023-01-01",
+                "starttime": "2022-01-01",
                 "endtime": endDateChartPond,
                 "aoid": id,
                 "thongsoid": value
@@ -776,7 +777,7 @@ export default function TestMenu() {
     const handleChange = async (value) => {
         const params = {
             "data": {
-                "starttime": "2023-04-27",
+                "starttime": "2022-01-01",
                 "endtime": endDateChartPond,
                 "aoid": aoid,
                 "thongsoid": value
@@ -999,7 +1000,6 @@ export default function TestMenu() {
     function onChangeQuanTrac(key) {
         console.log(key);
     }
-
 
     //------------------------------------------------End Quan Trắc ----------------------------------------------------------------------
 
@@ -1575,8 +1575,12 @@ export default function TestMenu() {
 
                 setDataChartScale(res.data.data.datachart[0].lstDate)
                 setDataFishPondScale(res.data.data.datachart[0].fishPond);
+                setDeleteScalekg(res.data.data.datatable)
+
+
 
                 const processedData = res.data.data.datatable.map((item) => ({
+                    id: item.id,
                     feeding: item.createdAt.slice(11, 16),
                     quantity: item.netMass,
                     lotnum: item.lotNum,
@@ -1600,6 +1604,7 @@ export default function TestMenu() {
 
         }
     }
+
     let filterDataScale = dataChartScale;
     if (startDateScale && endDateScale) {
         filterDataScale = dataChartScale.filter((item) => {
@@ -1650,7 +1655,7 @@ export default function TestMenu() {
     };
     useEffect(() => {
         loadChartScale()
-    }, [])
+    }, [isUpdating])
     const optionsKgScaleBar = { // option chỉnh sửa của loadChart( load thức ăn theo kg, ngày và tháng)
         chart: {
             type: 'bar',
@@ -1833,7 +1838,26 @@ export default function TestMenu() {
         },
 
     };
+    const handleDelete = async (id) => {
+        try {
+            const confirmed = window.confirm("Bạn có chắn chắn muốn xóa vùng nuôi này? ")
+            if (confirmed) {
+                await https.delete(`/harvest/${id}`);
+                setNameTableScale((prevTable) => prevTable.filter((item) => item.id !== id));
+
+            }
+
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
     const columnScale = [
+        {
+            title: "ID Vùng nuôi",
+            dataIndex: "id",
+            key: "id",
+        },
 
         {
             title: "Vùng nuôi",
@@ -1861,6 +1885,13 @@ export default function TestMenu() {
             title: "Giờ thu hoạch",
             dataIndex: "feeding",
             key: "feeding",
+        },
+        {
+            title: 'Action',
+            key: 'action',
+            render: (text, record) => (
+                <Button type="primary" danger onClick={() => handleDelete(record.id)}>Delete</Button>
+            ),
         }
 
 
@@ -1873,33 +1904,129 @@ export default function TestMenu() {
 
     //---------------------------------------------------- Start Chart cân theo Năm  -------------------------------------------------------------
 
-    const handleGetSumByMonthScale = async () => {
-        if (!selectedYearScale || !aoIdScaleYear) return;
+    const loadChartScaleYear = async () => {
+        if (!selectedYearScale || !selectIdScaleYear) return;
         const Params = {
             data: {
                 year: selectedYearScale,
-                aoid: aoIdScaleYear
-            }
-        }
+                aoid: selectIdScaleYear,
+            },
+        };
+
         try {
-            const token = localStorage.getItem('token');
-            const res = await https.post(ApiScaleYear, Params);
+            const token = localStorage.getItem("token");
+            const response = await https.post(ApiScaleYear, Params);
             if (token) {
-                const data = res.data.data.datachart?.[0];
+                const data = response.data.data.datachart?.[0];
                 if (data) {
                     const newSeries = { data: data.lstBigDecimal };
-                    setSeriesScale([newSeries]);
+                    setLoadScaleYear([newSeries]);
 
                 }
             }
         } catch (err) {
+            console.log("err: ", err);
         }
-    }
+    };
 
-    const optionsYearLineScale = {
+    const optionsYearScale = {
 
         chart: {
-            type: 'area',
+            type: 'bar',
+            zoom: {
+                type: "x",
+                enabled: true,
+            },
+        },
+
+
+        plotOptions: {
+            bar: {
+
+                borderRadius: 2,
+                dataLabels: {
+                    position: "top",
+                },
+            },
+        },
+
+        labels: ["Th 1", "Th 2", "Th 3", "Th 4", "Th 5", "Th 6", "Th 7", "Th 8", "Th 9", "Th 10", "Th 11", "Th 12",],
+
+        stroke: {
+            show: true,
+            curve: 'smooth',
+            lineCap: 'butt',
+            colors: undefined,
+            width: 1,
+            dashArray: [0, 0, 8]
+        },
+        colors: ['#036E9B'],
+        tooltip: {
+            enabled: true,
+            theme: "dark",
+            x: {
+                show: false,
+                format: "yyyy-MM-dd",
+            },
+        },
+
+        legend: {
+            show: false,
+            showForSingleSeries: true,
+            showForNullSeries: true,
+            showForZeroSeries: false,
+            position: "top",
+            horizontalAlign: "center",
+            floating: true,
+            fontSize: "13px",
+            fontFamily: "Helvetica, Arial",
+            fontWeight: 800,
+            formatter: undefined,
+            inverseOrder: false,
+            width: undefined,
+            height: undefined,
+            tooltipHoverFormatter: undefined,
+            customLegendItems: [],
+            offsetX: 0,
+            offsetY: 0,
+        },
+
+        dataLabels: {
+            enabled: true,
+            formatter: function (val) {
+                return val;
+            },
+            offsetY: 0,
+            style: {
+                fontSize: '12px',
+                colors: ["#FF5252"],
+                fontWeight: 400,
+
+            },
+            background: {
+                enabled: false,
+                foreColor: '#fff',
+                padding: 4,
+                borderRadius: 2,
+                borderWidth: 1,
+                borderColor: '#fff',
+                opacity: 0.9,
+                dropShadow: {
+                    enabled: false,
+                    top: 1,
+                    left: 1,
+                    blur: 1,
+                    color: '#000',
+                    opacity: 0.45
+                }
+            },
+        },
+
+    }
+    const optionsYearScaleLine = {
+
+        chart: {
+            type: 'bar',
             zoom: {
                 type: "x",
                 enabled: true,
@@ -1990,115 +2117,19 @@ export default function TestMenu() {
         },
 
     }
-    const optionsYearBarScale = {
-
-        chart: {
-            type: 'area',
-            zoom: {
-                type: "x",
-                enabled: true,
-            },
-        },
-
-
-        plotOptions: {
-            bar: {
-
-                borderRadius: 2,
-                dataLabels: {
-                    position: "top",
-                },
-            },
-        },
-
-        labels: ["Th 1", "Th 2", "Th 3", "Th 4", "Th 5", "Th 6", "Th 7", "Th 8", "Th 9", "Th 10", "Th 11", "Th 12",],
-
-        stroke: {
-            show: true,
-            curve: 'smooth',
-            lineCap: 'butt',
-            colors: undefined,
-            width: 0.1,
-            dashArray: [0, 0, 8]
-        },
-        colors: ['#036E9B'],
-        tooltip: {
-            enabled: true,
-            theme: "dark",
-            x: {
-                show: false,
-                format: "yyyy-MM-dd",
-            },
-        },
-
-        legend: {
-            show: false,
-            showForSingleSeries: true,
-            showForNullSeries: true,
-            showForZeroSeries: false,
-            position: "top",
-            horizontalAlign: "center",
-            floating: true,
-            fontSize: "13px",
-            fontFamily: "Helvetica, Arial",
-            fontWeight: 800,
-            formatter: undefined,
-            inverseOrder: false,
-            width: undefined,
-            height: undefined,
-            tooltipHoverFormatter: undefined,
-            customLegendItems: [],
-            offsetX: 0,
-            offsetY: 0,
-        },
-
-        dataLabels: {
-            enabled: true,
-            formatter: function (val) {
-                return val;
-            },
-            offsetY: -20,
-            style: {
-                fontSize: '12px',
-                colors: ["#FF5252"],
-                fontWeight: 400,
-
-            },
-            background: {
-                enabled: false,
-                foreColor: '#fff',
-                padding: 4,
-                borderRadius: 2,
-                borderWidth: 1,
-                borderColor: '#fff',
-                opacity: 0.9,
-                dropShadow: {
-                    enabled: false,
-                    top: 1,
-                    left: 1,
-                    blur: 1,
-                    color: '#000',
-                    opacity: 0.45
-                }
-            },
-        },
-
-    }
-
-    useEffect(() => {
-        handleGetSumByMonthScale()
-    }, [selectedYearScale, aoIdScaleYear])
-
-    const handleDatePickerChangeScaleYear = (date, dateString) => {
+    const handleYearChange = (date, dateString) => {
         if (date) {
-            const yearScale = date.year();
-            setSelectedYearScale(yearScale.toString());
+            setSelectedYearScale(date.year());
         }
     };
-
+    useEffect(() => {
+        loadChartScaleYear();
+    }, [selectedYearScale, selectIdScaleYear]);
     //---------------------------------------------------- End Chart cân theo Năm  -------------------------------------------------------------
 
-
+    function onChangeTabChartScale(key) {
+        console.log('key: ', key);
+    }
     function onChangeTabChart(key) {
         console.log('key: ', key);
     }
@@ -2397,7 +2428,7 @@ export default function TestMenu() {
                             </div>
                         </TabPane>
                         <TabPane key="3" tab={<span className='flex' style={{ fontWeight: 400, }}> <AiOutlineDashboard size={24} /> <p className='px-2'>Quan trắc</p></span>} >
-                            <div className='bg-white' style={{ width: '100%' }}>
+                            <div className='bg-white'>
                                 <div className="text-lg text-titleBorder" style={{ color: "white", fontWeight: 400, }} >
 
                                     <p>Biểu đồ quan trắc {nameValue.name} - {dataFishPondKg.name} </p>
@@ -2558,7 +2589,7 @@ export default function TestMenu() {
                                         } key="3">
 
                                             {filteredTableDataScale.length > 0 ? (
-                                                <Table className=' bg-blue-500' dataSource={filteredTableDataScale.length > 0 ? filteredTableDataScale : nameTableScale} pagination={{ pageSize: 5 }} style={{}} columns={columnScale} />
+                                                <Table className=' bg-blue-500' dataSource={filteredTableDataScale.length > 0 ? filteredTableDataScale : nameTableScale} pagination={{ pageSize: 5 }} style={{}} />
                                             ) : (
                                                 <Table className='' dataSource={nameTableScale} pagination={{ pageSize: 5 }} style={{}} columns={columnScale} />
                                             )}
@@ -2570,16 +2601,16 @@ export default function TestMenu() {
                                 <div className='bg-white' style={{ width: '50%', borderRadius: 5 }}>
                                     <div className="text-lg text-titleBorder" style={{ color: "white", fontWeight: 400, background: "#036E9B", }} >
                                         {/* renderChartKgTrongThang */}
-                                        <p>Biểu đồ thu hoạch năm {selectedYearScale} - {dataFishPondKg.name} </p>
+                                        <p>Biểu đồ lượng tiêu thụ thức ăn theo tháng năm {selectedYear} - {dataFishPondKg.name} </p>
                                     </div>
                                     <DatePicker
-                                        style={{ position: 'relative', top: 40, zIndex: 9999 }}
-                                        onChange={handleDatePickerChangeScaleYear}
+                                        style={{ position: 'relative', top: 10, zIndex: 9999 }}
+                                        onChange={handleYearChange}
                                         picker="year"
                                         locale={customYear}
                                         allowClear={true}
                                     />
-                                    <Tabs defaultActiveKey="1" onChange={onChange}>
+                                    <Tabs defaultActiveKey="1" onChange={onChangeTabChartScale}>
                                         <TabPane tab={
                                             <span >
                                                 <BsBarChart size={20} />
@@ -2588,8 +2619,8 @@ export default function TestMenu() {
                                         } key="1">
 
                                             <ReactApexChart
-                                                options={optionsYearBarScale}
-                                                series={seriesScale}
+                                                options={optionsYearScale}
+                                                series={loadScaleYear}
                                                 type="bar"
                                                 height={300}
                                             />
@@ -2603,8 +2634,8 @@ export default function TestMenu() {
                                         } key="2">
 
                                             <ReactApexChart
-                                                options={optionsYearLineScale}
-                                                series={seriesScale}
+                                                options={optionsYearScale}
+                                                series={loadScaleYear}
                                                 type="area"
                                                 height={300}
                                             />
@@ -2613,12 +2644,13 @@ export default function TestMenu() {
 
                                     </Tabs>
                                 </div>
-
                             </div>
 
                         </TabPane>
 
                     </Tabs>
+
+                    {/* <ChartTestDelete /> */}
 
                 </div>
 

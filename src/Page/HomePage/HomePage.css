@@ -1,38 +1,51 @@
-.back-ground-home{
-    background-color: #d4dad6;
-   width: 100%;
-   height: 100vh;
+
+
+@keyframes animation1 {
+  from {
+    transform: translateY(-500%);
+  }
+  to {
+    transform: translateY(0);
+  }
 }
-.sidebarHome{
-    position: absolute;
+.FeedTrans {
+  animation-name:animation1 ;
+  transition: transform 0.3s ease-out;
+  animation-duration: 1s;
+  cursor: pointer;
+  transition: 0.4s ease-in-out;
+  background: #036E9B;
+  color: white;
+
 }
-.menu-home{
-    position: relative;
+.FeedTrans:hover{
+  background: #3f95ba;
+  color: white;
 }
-.ant-menu {
-    background-color: #001529; /* Set background color */
-    border: none; /* Remove border */
-    font-size: 16px; /* Set font size */
+
+.active {
+  transform: translateY(-50px);
+}
+.FeedTrans1 {
+  cursor: pointer;
+  animation-name:animation2 ;
+  transition: transform 0.3s ease-out;
+  animation-duration: 1s;
+  transition: 0.4s ease-in-out;
+  background: #036E9B;
+  color: white;
+
+}
+
+.FeedTrans1:hover{
+  background: #3f95ba;
+  color: white;
+}
+@keyframes animation2 {
+  from {
+    transform: translateY(500%);
   }
-  
-  .ant-menu-item,
-  .ant-menu-submenu-title {
-    color: #fff; /* Set font color */
-    padding: 0 20px; /* Add padding */
+  to {
+    transform: translateY(0);
   }
-  
-  .ant-menu-item:hover,
-  .ant-menu-submenu-title:hover {
-    color: #1890ff; /* Change font color on hover */
-    background-color: transparent; /* Remove background color on hover */
-  }
-  
-  .ant-menu-submenu-popup {
-    background-color: #001529; /* Set background color for submenus */
-  }
-  
-  .ant-menu-submenu-popup .ant-menu-item,
-  .ant-menu-submenu-popup .ant-menu-submenu-title {
-    color: #fff; /* Set font color for submenus */
-  }
-  
+}

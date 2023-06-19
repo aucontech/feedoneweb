@@ -111,9 +111,9 @@ export default function QuanTrac() {
     const changeValueCallApiNumber3 = (value) => {
         setAoID(value)
         if (Array.isArray(value)) {
-            loadChartQuanTrac(value[0]);
+            handleChange(value[0]);
         } else {
-            loadChartQuanTrac(value);
+            handleChange(value);
         }
     };
 

@@ -38,6 +38,8 @@ export const ParamsOfAccumulated = { // Params của API lũy kế lũy kế s�
     }
 }
 
+export const ApiLoadDeviceControl = "/getdevicecontrol"
+
 export const ApiScaleYear = "/getharvestbymonthinyear"
 
 export const ApiScaleByDay = "/getharvestbydate" // Api chart cân theo ngày 
@@ -51,7 +53,7 @@ export const ApiChartPumpYear = "/getpumpstatisticsbyyear"  // API chart giờ b
 export const updateListFeed = "/updatefeed"
 
 export const https = axios.create({ //https của tất cả API 
-    baseURL: "http://easyfeed.vn/v1",
+    baseURL: "https://easyfeed.vn/v1",
 })
 https.interceptors.request.use( // quét token liên tục
     (config) => {

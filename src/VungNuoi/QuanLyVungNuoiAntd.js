@@ -8,6 +8,7 @@ export default function QuanLyVungNuoiAntd() {
     let history = useNavigate();
     const [farmingAreas, setFarmingAreas] = useState([]);
     const [selectedFarmingArea, setSelectedFarmingArea] = useState(null);
+    console.log('selectedFarmingArea: ', selectedFarmingArea);
     const [selectId, setSelectedId] = useState(null)
     const [isUpdating, setIsUpdating] = useState(false);
     const [showFormInput, setShowFormInput] = useState(false);
@@ -81,7 +82,6 @@ export default function QuanLyVungNuoiAntd() {
                 await https.delete(`/farmingareas/${id}`);
                 setFarmingAreas(farmingAreas.filter((farmingArea) => farmingArea.id !== id));
                 setSelectedFarmingArea(null);
-                setShowFormInput(false);
             }
 
         } catch (error) {

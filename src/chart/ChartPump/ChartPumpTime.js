@@ -151,6 +151,7 @@ export default function ChartPumpTime() {
                 </div>
                 <div>
                     <DatePicker.RangePicker
+                        style={{ position: 'relative', top: 5 }}
                         value={[startDate, endDate]}
                         onChange={(dates) => {
                             setStartDate(dates[0]);
